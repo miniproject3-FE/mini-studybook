@@ -1,9 +1,22 @@
-import React from 'react'
-
+import React from 'react';
+import styled from 'styled-components';
 function Signup() {
   return (
-    <div>Signup</div>
-  )
+    <StyledWrap>
+      <StyledHeader></StyledHeader>
+      <StyledForm></StyledForm>
+    </StyledWrap>
+  );
 }
 
-export default Signup
+const StyledWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledHeader = styled.div``;
+
+const StyledForm = styled.form``;
+
+export default Signup;
