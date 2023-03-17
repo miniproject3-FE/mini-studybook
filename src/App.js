@@ -1,9 +1,13 @@
-import React from 'react';
-import { Router } from 'react-router-dom';
-import Footer from './common/Footer';
+import React from "react";
+import Header from "./common/Header";
+import LabelInput from "./common/LabelInput";
 
 function App() {
-  return <Footer />;
+  return (
+    <div>
+      <Header/>
+    </div>
+  );
 }
 
 export default App;
