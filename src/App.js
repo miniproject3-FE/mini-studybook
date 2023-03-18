@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "./common/Header";
-import LabelInput from "./common/LabelInput";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <div>
-      <Header/>
+      <Login />
     </div>
   );
 }

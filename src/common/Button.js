@@ -4,11 +4,11 @@
  * 코드 작성 날짜 : 2023-03-17 22:00
  */
 
-import styled, { css } from 'styled-components';
 import React from 'react';
+import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
 
-function Button({ props }) {
+function Button(props) {
   return (
     <StyledButton
       color={props.color}
@@ -16,9 +16,11 @@ function Button({ props }) {
       onClick={props.onClick}
       size={props.size}
       value={props.value}
-    />
+    >
+      {props.value}
+    </StyledButton>
   );
-}
+};
 
 export default Button;
 
@@ -34,7 +36,7 @@ const DDv = styled.div`
 //버튼의 사용을 크게 3가지라 생각하고 크기별로 3가지를 만든다.
 const sizes = {
   large: {
-    width: '15rem',
+    width: '100%',
     height: '2.5rem',
     fontSize: '1.25rem',
   },
