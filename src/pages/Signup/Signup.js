@@ -7,16 +7,18 @@ import LogoBox from '../../components/LogoBox';
 import useInput from '../../hooks/useInput';
 import { __getData, __signup } from '../../redux/modules/signupSlice';
 import { StyledBody, StyledForm, StyledHeader, StyledWrap } from './styles';
-import { idCheck, pwCheck, emailCheck } from '../../utils/loginValidation';
+import { idCheck, pwCheck, emailCheck, nameCheck } from '../../utils/loginValidation';
 import useSignInfo from '../../hooks/useSignInfo';
 function Signup() {
   const [idInfo, idHandler, idError] = useSignInfo();
   const [pwInfo, pwHandler, pwError] = useSignInfo();
-  const [password2, setPw2] = useInput();
-  const [username, setName] = useInput();
-  const [emailInfo, emailHandler, emaiError] = useSignInfo();
+
+  const [username, usernameHandler, usernameError] = useSignInfo();
+  const [emailInfo, emailHandler, emailError] = useSignInfo();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [password2, setPw2] = useInput();
 
   const { isLoading, isError, data } = useSelector((state) => state.singup);
 
@@ -25,15 +27,24 @@ function Signup() {
 
     idError(idCheck(idInfo.value));
     pwError(pwCheck(pwInfo.value));
-    emaiError(emailCheck(emailInfo.value));
+    emailError(emailCheck(emailInfo.value));
+    usernameError(nameCheck(username.value));
 
-    console.log('idInfo', idInfo, 'pwInfo', pwInfo, 'emailInfo', emailInfo);
-    if (!idInfo.value && !pwInfo.value && !emailInfo.value) {
+    console.log('------------------------------------');
+    if (!idInfo.isError && !pwInfo.isError && !emailInfo.isError) {
+      const newUser = {
+        userid: idInfo.value,
+        password: pwInfo.value,
+        email: emailInfo.value,
+        username: username,
+      };
+
       //dispatch(__signup(newUser));
-      //.then(navigate('/'));
+      //navigate('/');
     }
   };
 
+  console.log(password2);
   useEffect(() => {
     //dispatch(__getData());
   }, [dispatch]);
@@ -76,11 +87,13 @@ function Signup() {
             onChange={setPw2}
           />
           <FormInput
-            value={username}
-            onChange={setName}
+            value={username.value}
+            onChange={usernameHandler}
             size="large"
             id={3}
             label="이름"
+            isError={username.isError}
+            error={username.error}
           />
           <FormInput
             size="large"

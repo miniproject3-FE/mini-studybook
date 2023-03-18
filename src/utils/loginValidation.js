@@ -22,14 +22,15 @@
  *
  */
 
-import { useRef } from 'react';
-
 const idCheck = (id) => {
-  const idRegEx = /^[가-힣a-zA-Z]{2,10}$/;
+  const idRegEx = /^[a-z0-9]{8,16}$/;
   let message = '';
-  let result = idRegEx.test(id);
+  console.log('id', id);
+  let result = !idRegEx.test(id);
 
-  if (result === true) {
+  if (id === '') {
+    message = '아이디는 필수입니다.';
+  } else if (result === true) {
     message = '사용자의 이름은 2~10자 한글, 영어만 사용할 수 있습니다.';
   } else {
     message = '';
@@ -39,12 +40,15 @@ const idCheck = (id) => {
 };
 
 const pwCheck = (pw) => {
-  const pwRegEx = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@#$!%*?&])[A-Za-z\\d@#$!%*?&]{8,15}$/;
+  const pwRegEx = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,15}$/;
+
   let message = '';
 
-  let result = pwRegEx.test(pw);
+  let result = !pwRegEx.test(pw);
 
-  if (result === true) {
+  if (pw === '') {
+    message = '비밀번호는 필수입니다.';
+  } else if (result === true) {
     message = '8~15글자, 영문자 1개, 숫자 1개, 특수문자 1개 꼭 입력해야합니다.';
   } else {
     message = '';
@@ -54,11 +58,15 @@ const pwCheck = (pw) => {
 };
 
 const emailCheck = (email) => {
-  const emailRegEx = /^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\.[A-Za-z0-9\\-]+$"/;
+  const emailRegEx =
+    /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
   let message = '';
 
-  let result = emailRegEx.test(email);
-  if (result === true) {
+  let result = !emailRegEx.test(email);
+
+  if (email === '') {
+    message = '이메일은 필수입니다.';
+  } else if (result === true) {
     message = '이메일 형식에 맞지 않습니다.';
   } else {
     message = '';
@@ -67,4 +75,21 @@ const emailCheck = (email) => {
   return [result, message];
 };
 
-export { idCheck, pwCheck, emailCheck };
+const nameCheck = (userName) => {
+  const nameRegEx = /^[a-zA-Z가-힣]{2,10}$/;
+  let message = '';
+
+  let result = !nameRegEx.test(userName);
+
+  if (userName === '') {
+    message = '사용자이름은 필수입니다.';
+  } else if (result === true) {
+    message = '사용자의 이름은 2~10자 한글, 영어만 사용할 수 있습니다.';
+  } else {
+    message = '';
+  }
+
+  return [result, message];
+};
+
+export { idCheck, pwCheck, emailCheck, nameCheck };

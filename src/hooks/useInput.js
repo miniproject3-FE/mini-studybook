@@ -11,7 +11,7 @@ function useInput() {
 
   const handler = (e) => {
     const { value } = e.target;
-    setvalue({ value });
+    setvalue(value);
   };
 
   const changeHandler = (change) => {

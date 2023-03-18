@@ -7,7 +7,7 @@
 import React, { useState } from 'react';
 
 function useSignInfo() {
-  const [valueInfo, setvalue] = useState({ value: '', isError: false, error: '' });
+  const [valueInfo, setvalue] = useState({ value: '', isError: true, error: '' });
 
   const valHandler = (e) => {
     const { value } = e.target;
@@ -16,8 +16,9 @@ function useSignInfo() {
   };
 
   const errorHandler = (item) => {
-    setvalue({ ...valueInfo, isError: item[0] });
-    setvalue({ ...valueInfo, error: item[1] });
+    console.log('이거맞나? item', item);
+    setvalue({ ...valueInfo, isError: true, error: item[1] });
+    console.log('valueInfo', valueInfo);
   };
 
   return [valueInfo, valHandler, errorHandler];
