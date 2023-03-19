@@ -1,3 +1,12 @@
+/**
+ *
+ * 작성자 : 박찬우
+ * 목적:
+ * thunk를 이용해서 서버에 비동기 통신을 하려고 한다.
+ * 서버에 회원가입에 대한 정보 전달을 목적으로 한다.
+ *
+ */
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -28,7 +37,7 @@ export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => 
 
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue('error');
   }
 });
 

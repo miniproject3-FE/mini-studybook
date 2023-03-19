@@ -1,10 +1,25 @@
 {
   "user": [
     {
+      "id": "0",
       "userid": "id01",
       "username": "name01",
       "password": "password01",
       "email": "aaa@bbbbb.com"
+    },
+    {
+      "id": "1",
+      "userid": "chanwchanw",
+      "password": "123456789as!@",
+      "email": "chanw@naver.com",
+      "username": "박찬우"
+    },
+    {
+      "id": "2",
+      "userid": "chanwchanw",
+      "password": "123456789AS!@",
+      "email": "chanw@naver.com",
+      "username": "박찬우"
     }
   ]
 }

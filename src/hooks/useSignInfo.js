@@ -11,14 +11,13 @@ function useSignInfo() {
 
   const valHandler = (e) => {
     const { value } = e.target;
-    console.log('value', value);
     setvalue({ ...valueInfo, value });
   };
 
   const errorHandler = (item) => {
-    console.log('이거맞나? item', item);
-    setvalue({ ...valueInfo, isError: true, error: item[1] });
-    console.log('valueInfo', valueInfo);
+    const fristItem = item[0];
+    const secondItem = item[1];
+    setvalue({ ...valueInfo, isError: fristItem, error: secondItem });
   };
 
   return [valueInfo, valHandler, errorHandler];

@@ -1,5 +1,17 @@
 import styled, { css } from 'styled-components';
 
+/**
+ * 수정한 사람 : 박찬우
+ * 수정 내용 :
+ * 1. input 과 label 위치가 통일되어 있지않아서 수정
+ * 3. input의 height 기본 속성 제거 (이거 때매 높이가 안맞음)
+
+ * 5. props로 인자 묶기 -> 보기 깔끔하기 위해서
+ * 6. labelInput label 과 Input size 맞추기
+ * 수정 날짜 : 2023-03-18
+ */
+
+
 const sizes = {
   large: { width: '20rem', height: '2.5rem', fontSize: '1.5rem' },
   medium: { width: '17rem', height: '2rem', fontSize: '1.25rem' },
