@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components';
 
 
@@ -12,9 +13,9 @@ const Logo = styled.div`
 const StyledHeader = styled.header`
   height: 100px;
   width: 100%;
-  background-color: #14213d;
-  color: white;
-`;
+  background-color: #14213D;
+  color: white
+`
 const StyledUl = styled.ul`
   height: 100px;
   display: flex;
@@ -23,12 +24,14 @@ const StyledUl = styled.ul`
   align-items: flex-end;
   gap: 30px;
   margin-right: 20px;
-`;
+`
 
 const StyledLi = styled.li`
   font-size: 18px;
+
   margin-bottom: 20px;
   cursor: pointer;
 `;
 
 export { StyledHeader, StyledUl, StyledLi, Logo };
+
