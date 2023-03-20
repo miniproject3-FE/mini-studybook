@@ -1,9 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-
-function Footer() {
-  return <StyledFooter>footer</StyledFooter>;
-}
 
 const StyledFooter = styled.div`
   width: 100%;
@@ -18,4 +13,4 @@ const StyledFooter = styled.div`
   left: 0;
 `;
 
-export default Footer;
+export { StyledFooter };

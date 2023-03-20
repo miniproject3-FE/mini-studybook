@@ -10,9 +10,7 @@ function Header() {
       </StyledUl>
     </StyledHeader>
   )
-};
-
-
+}
 
 export default Header;
 
