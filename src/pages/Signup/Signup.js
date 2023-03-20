@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput';
 import LogoBox from '../../components/LogoBox';
-import useInput from '../../Hooks/useInput';
+import useInput from '../../hooks/useInput';
 import { __getData, __signup } from '../../redux/modules/signupSlice';
 import { StyledBody, StyledForm, StyledHeader, StyledWrap } from './styles';
 import {
@@ -26,7 +26,7 @@ import {
   nameCheck,
   reconfirmPassword,
 } from '../../utils/loginValidation';
-import useSignInfo from '../../Hooks/useSignInfo';
+import useSignInfo from '../../hooks/useSignInfo';
 function Signup() {
   //hook
   const [idInfo, idHandler, idError] = useSignInfo();

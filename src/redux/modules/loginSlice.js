@@ -40,7 +40,6 @@ export const __login = createAsyncThunk('login', async (payload, thunkAPI) => {
   }
 });
 
-
 export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => {
   try {
     const response = await api.get('/api/auth/logout');
@@ -48,19 +47,6 @@ export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => 
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-export const __login = createAsyncThunk(
-    "login",
-    async (payload, thunkAPI) => {
-        try {
-            const response = await axios.post("${process.env.REACT_APP_URL}/api/auth/login", payload);
-            return thunkAPI.fulfillWithValue(response.data);
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
-        }
-    }
-);
-
 
 const loginSlice = createSlice({
   name: 'login',
