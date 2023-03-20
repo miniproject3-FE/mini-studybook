@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { StyledLabel, StyledInput, StyledLabelBlock } from './styles'
 
 function LabelInput(props) {
   return (
@@ -29,12 +30,4 @@ function LabelInput(props) {
 
 export default LabelInput;
 
-//StyledLabelInput은 Input 으로 착각할 염려가 있지 않을까 싶습니다.
-//StyledLabelBlock 이나 Wrap 이 좋지 않을까요?
-const StyledLabelBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  gap: 10px;
-  width: 460px;
-`;
+
