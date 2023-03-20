@@ -75,7 +75,7 @@ function Signup() {
       console.log('newUser', newUser);
 
       dispatch(__signup(newUser));
-      //navigate('/');
+      navigate('/');
     }
   }, [handlerSubmit]);
 

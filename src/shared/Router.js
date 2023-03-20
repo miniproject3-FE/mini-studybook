@@ -7,17 +7,21 @@
 
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from '../components/Header';
 import Login from '../pages/Login';
 import Main from '../pages/Main/Main';
 import Signup from '../pages/Signup/Signup';
+import Board from '../pages/Board';
 
 function Router() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path={'/'} element={<Main />} />
         <Route path={'/signup'} element={<Signup />} />
         <Route path={'/login'} element={<Login />} />
+        <Route path={'/board'} element={<Board />} />
       </Routes>
     </BrowserRouter>
   );
