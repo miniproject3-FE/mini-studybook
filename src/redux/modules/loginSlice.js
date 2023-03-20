@@ -32,7 +32,7 @@ export const __login = createAsyncThunk(
     "login",
     async (payload, thunkAPI) => {
         try {
-            const response = await axios.post("${process.env.REACT_APP_URL}", payload);
+            const response = await axios.post("${process.env.REACT_APP_URL}/api/auth/login", payload);
             return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message)

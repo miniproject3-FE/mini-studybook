@@ -32,7 +32,7 @@ function Login() {
     e.preventDefault();
     dispatch(__login(user))
     .then((response)=> {
-      setCookie("token", response.data.Authorization)
+      setCookie("id", response.data.Authorization)
     });
     idChangeHandler("");
     passwordChangeHandler("");
