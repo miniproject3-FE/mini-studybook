@@ -5,39 +5,9 @@
  *
  */
 
-<<<<<<< HEAD:src/common/Button.js
-import React from 'react';
 import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
 
-function Button(props) {
-  return (
-    <StyledButton
-      color={props.color}
-      background={props.background}
-      onClick={props.onClick}
-      size={props.size}
-      value={props.value}
-    >
-      {props.value}
-    </StyledButton>
-  );
-};
-
-export default Button;
-
-const DDv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-left: 10px;
-`;
-
-=======
-import styled, { css } from 'styled-components';
-import { darken, lighten } from 'polished';
-
->>>>>>> formerge:src/components/Button/styles.js
 //rem : root의 font-size 기준으로 크기를 정한다.
 //버튼 크기와 폰트크기를 일정하기 유지하고 싶어서.
 //버튼의 사용을 크게 3가지라 생각하고 크기별로 3가지를 만든다.

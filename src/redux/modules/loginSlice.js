@@ -17,7 +17,7 @@ import axios from "axios";
 const initialState = {
     users: [
         {
-            userid: "",
+            loginid: "",
             password: "",
         },
     ],

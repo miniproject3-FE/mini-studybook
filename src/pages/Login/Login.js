@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import useInput from '../../hooks/useInput';
+import useInput from '../../Hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
@@ -25,7 +25,7 @@ function Login() {
     password,
   };
 
-  const [cooky, setCookie] = useCookies();
+  const [cookie, setCookie] = useCookies();
 
 
   const loginOnsubmitHandler = (e) => {
