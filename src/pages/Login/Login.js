@@ -4,7 +4,7 @@
  * 작성 날짜: 2023-03-18
  */
 
-import React from 'react'
+import React from 'react';
 import useInput from '../../hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
@@ -13,9 +13,7 @@ import LogoBox from '../../components/LogoBox';
 import LabelInput from '../../components/LabelInput';
 import Button from '../../components/Button';
 
-
 function Login() {
-
   const [userid, idOnChangeHandler, idChangeHandler] = useInput();
   const [password, passwordOnChangeHandler, passwordChangeHandler] = useInput();
 
@@ -28,10 +26,9 @@ function Login() {
 
   const loginOnsubmitHandler = (payload) => {
     dispatch(__login(payload));
-    idChangeHandler("");
-    passwordChangeHandler("");
+    idChangeHandler('');
+    passwordChangeHandler('');
   };
-
 
   return (
     <StyledFormContainer>
@@ -39,28 +36,29 @@ function Login() {
         <LogoBox />
       </StyledHeader>
       <StyledBody>
-        <StyledForm onSubmit={(e) => {
-          e.preventDefault();
-          loginOnsubmitHandler(user);
-        }}
+        <StyledForm
+          onSubmit={(e) => {
+            e.preventDefault();
+            loginOnsubmitHandler(user);
+          }}
         >
           <LabelInput
             require
-            label={"ID"}
-            id={"id"}
-            size={"large"}
-            type={"text"}
-            placeholder={"ID를 입력해주세요."}
+            label={'ID'}
+            id={'id'}
+            size={'large'}
+            type={'text'}
+            placeholder={'ID를 입력해주세요.'}
             value={userid}
             onChange={idOnChangeHandler}
           />
           <LabelInput
             require
-            label={"PASSWORD"}
-            id={"password"}
-            size={"large"}
-            type={"password"}
-            placeholder={"PASSWORD를 입력해주세요."}
+            label={'PASSWORD'}
+            id={'password'}
+            size={'large'}
+            type={'password'}
+            placeholder={'PASSWORD를 입력해주세요.'}
             value={password}
             onChange={passwordOnChangeHandler}
           />
@@ -73,7 +71,7 @@ function Login() {
         </StyledForm>
       </StyledBody>
     </StyledFormContainer>
-  )
-};
+  );
+}
 
 export default Login;

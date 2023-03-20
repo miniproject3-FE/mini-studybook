@@ -1,5 +1,3 @@
-import styled, { css } from 'styled-components';
-
 /**
  * 수정한 사람 : 박찬우
  * 수정 내용 :
@@ -9,17 +7,39 @@ import styled, { css } from 'styled-components';
  * 5. props로 인자 묶기 -> 보기 깔끔하기 위해서
  * 6. labelInput label 과 Input size 맞추기
  * 수정 날짜 : 2023-03-18
+ * 
+ * ---------------------------------------------
+ * 수정한 사람 : 박찬우
+ * 수정 내용 :
+ * 1. label font size를 props로 넣을 수 있게 하기
+ * 2. StyledLabelBlock width 기본값 100%로 변경
+ * 3. sizes 에 board 추가
+ * 수정 날짜: 2023.03.20
  */
 
+import styled, { css } from 'styled-components';
 
 const sizes = {
   large: { width: '20rem', height: '2.5rem', fontSize: '1.5rem' },
   medium: { width: '17rem', height: '2rem', fontSize: '1.25rem' },
   small: { width: '12rem', height: '1.5rem', fontSize: '1rem' },
+  board: {
+    width: '100%',
+    height: '2.5rem',
+    fontSize: '1,5rem',
+    boxShadow: `rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+  rgb(209, 213, 219) 0px 0px 0px 1px inset`,
+  },
 };
 
 const StyledLabel = styled.label`
   font-weight: 700;
+
+  ${({ fontSize }) =>
+    fontSize &&
+    css`
+      font-size: ${fontSize};
+    `}
 `;
 const StyledInput = styled.input`
   /* 공통 속성 */
@@ -36,6 +56,7 @@ const StyledInput = styled.input`
       width: ${sizes[size].width};
       height: ${sizes[size].height};
       font-size: ${sizes[size].fontSize};
+      box-shadow: ${sizes[size].boxShadow};
     `}
 `;
 
@@ -44,7 +65,7 @@ const StyledLabelBlock = styled.div`
   flex-direction: column;
   align-items: left;
   gap: 10px;
-  width: 460px;
+  width: 100%;
 `;
 
 export { StyledLabel, StyledInput, StyledLabelBlock };
