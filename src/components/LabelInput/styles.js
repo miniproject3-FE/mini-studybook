@@ -39,4 +39,12 @@ const StyledInput = styled.input`
     `}
 `;
 
-export { StyledLabel, StyledInput };
+const StyledLabelBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 10px;
+  width: 460px;
+`;
+
+export { StyledLabel, StyledInput, StyledLabelBlock };
