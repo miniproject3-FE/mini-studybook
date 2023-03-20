@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const initialState = {
   user: {
-    userid: 'id01',
+    loginid: 'id01',
     username: 'name01',
     password: 'password01',
     email: 'aaa@bbbbb.com',

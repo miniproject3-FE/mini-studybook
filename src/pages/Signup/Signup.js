@@ -67,7 +67,7 @@ function Signup() {
     ) {
       const newUser = {
         id: '2',
-        userid: idInfo.value,
+        loginid: idInfo.value,
         password: pwInfo.value,
         email: emailInfo.value,
         username: username.value,

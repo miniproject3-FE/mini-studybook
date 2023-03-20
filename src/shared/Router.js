@@ -12,6 +12,7 @@ import Login from '../pages/Login';
 import Main from '../pages/Main/Main';
 import Signup from '../pages/Signup/Signup';
 import Board from '../pages/Board';
+import DragBox from '../components/DragDrop/DragBox';
 
 function Router() {
   return (

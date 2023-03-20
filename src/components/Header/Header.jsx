@@ -12,7 +12,7 @@ import { __logout } from '../../redux/modules/loginSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
 
 function Header() {
-  const [cookie] = useCookies(['id']);
+  const [cookie, setCookie, removeCookie] = useCookies(['id']);
   const dispatch = useDispatch();
   const [logout, setLogout] = useState(false);
   const navigate = useNavigate();
@@ -20,8 +20,9 @@ function Header() {
     dispatch(__logout()).then((response) => {
       if (response.type === 'logout/fulfilled') {
         setLogout(true);
+        removeCookie(['id']);
       } else if (response.type === 'logout/rejected') {
-        setLogout(true);
+        setLogout(false);
       }
     });
   };
@@ -31,11 +32,10 @@ function Header() {
     navigate('/login');
   }
 
-  console.log(cookie === {});
   return (
     <StyledHeader>
       <StyledUl>
-        {cookie !== {} ? (
+        {cookie.id !== undefined ? (
           <StyledLi onClick={handlerClickLogout}>Logout</StyledLi>
         ) : (
           <StyledLi>Login</StyledLi>

@@ -1,26 +1,20 @@
-/**
- * 작성자: 김은영
- * 목적: 로그인 기능구현
- * 작성 날짜: 2023-03-18
- */
-
 import React from 'react';
 import useInput from '../../hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
 import LogoBox from '../../components/LogoBox';
-import LabelInput from '../../components/LabelInput';
 import Button from '../../components/Button';
+import FormInput from '../../components/FormLabelInput/FormLabelInput';
 
 function Login() {
-  const [userid, idOnChangeHandler, idChangeHandler] = useInput();
+  const [loginid, idOnChangeHandler, idChangeHandler] = useInput();
   const [password, passwordOnChangeHandler, passwordChangeHandler] = useInput();
 
   const dispatch = useDispatch();
 
   const user = {
-    userid,
+    loginid,
     password,
   };
 
@@ -42,23 +36,23 @@ function Login() {
             loginOnsubmitHandler(user);
           }}
         >
-          <LabelInput
-            require
+          <FormInput
+            required
             label={'ID'}
             id={'id'}
             size={'large'}
             type={'text'}
-            placeholder={'ID를 입력해주세요.'}
-            value={userid}
+            placeholder={'아이디를 입력해주세요.'}
+            value={loginid}
             onChange={idOnChangeHandler}
           />
-          <LabelInput
-            require
+          <FormInput
+            required
             label={'PASSWORD'}
             id={'password'}
             size={'large'}
             type={'password'}
-            placeholder={'PASSWORD를 입력해주세요.'}
+            placeholder={'비밀번호를 입력해주세요.'}
             value={password}
             onChange={passwordOnChangeHandler}
           />
