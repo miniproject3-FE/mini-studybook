@@ -4,38 +4,38 @@
  * 작성 날짜: 2023-03-18
  */
 
-import React from 'react'
+import React, { useEffect } from 'react';
 import useInput from '../../Hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
 import LogoBox from '../../components/LogoBox';
 import Button from '../../components/Button';
-import FormInput from '../../components/FormLabelInput'
+import FormInput from '../../components/FormLabelInput/FormLabelInput';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-
-  const [userid, idOnChangeHandler, idChangeHandler] = useInput();
+  const [loginid, idOnChangeHandler, idChangeHandler] = useInput();
   const [password, passwordOnChangeHandler, passwordChangeHandler] = useInput();
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [cookie, setCookie] = useCookies();
   const user = {
-    userid,
+    loginid,
     password,
   };
 
-  const [cookie, setCookie] = useCookies();
-
-
   const loginOnsubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(__login(user))
-    .then((response)=> {
-      setCookie("id", response.data.Authorization)
+    dispatch(__login(user)).then((response) => {
+      if (response.type === 'logout/fulfilled') {
+        setCookie('id', response.data.Authorization);
+      }
     });
-    idChangeHandler("");
-    passwordChangeHandler("");
+    idChangeHandler('');
+    passwordChangeHandler('');
   };
 
   return (
@@ -44,25 +44,29 @@ function Login() {
         <LogoBox />
       </StyledHeader>
       <StyledBody>
-        <StyledForm onSubmit={loginOnsubmitHandler}
+        <StyledForm
+          onSubmit={(e) => {
+            e.preventDefault();
+            loginOnsubmitHandler(user);
+          }}
         >
           <FormInput
             required
-            label={"ID"}
-            id={"id"}
-            size={"large"}
-            type={"text"}
-            placeholder={"아이디를 입력하세요."}
-            value={userid}
+            label={'ID'}
+            id={'id'}
+            size={'large'}
+            type={'text'}
+            placeholder={'아이디를 입력해주세요.'}
+            value={loginid}
             onChange={idOnChangeHandler}
           />
           <FormInput
             required
-            label={"PASSWORD"}
-            id={"password"}
-            size={"large"}
-            type={"password"}
-            placeholder={"비밀번호를 입력하세요."}
+            label={'PASSWORD'}
+            id={'password'}
+            size={'large'}
+            type={'password'}
+            placeholder={'비밀번호를 입력해주세요.'}
             value={password}
             onChange={passwordOnChangeHandler}
           />
@@ -75,7 +79,7 @@ function Login() {
         </StyledForm>
       </StyledBody>
     </StyledFormContainer>
-  )
-};
+  );
+}
 
 export default Login;

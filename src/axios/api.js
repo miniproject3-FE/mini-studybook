@@ -9,8 +9,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.REACT_API_SERVER,
-  timeout: 1,
+  baseURL: process.env.REACT_APP_SERVER,
+  timeout: 4000,
 });
 
 //use 함수 내에는 fullfill 함수와 reject 함수를 콜백으로 받는다.
@@ -28,7 +28,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function (response) {
     //정상 응답
-    console.log('instance.response',response)
     return response;
   },
   function (error) {
@@ -36,3 +35,5 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default instance;

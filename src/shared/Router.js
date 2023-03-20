@@ -16,12 +16,12 @@ function Router() {
   return (
     <CookiesProvider>
       <BrowserRouter>
-      <Routes>
-        <Route path={'/'} element={<Main />} />
-        <Route path={'/signup'} element={<Signup />} />
-        <Route path={'/login'} element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<Main />} />
+          <Route path={'/signup'} element={<Signup />} />
+          <Route path={'/login'} element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </CookiesProvider>
   );
 }
