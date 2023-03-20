@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
-import useInput from '../../hooks/useInput';
+import useInput from '../../Hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
