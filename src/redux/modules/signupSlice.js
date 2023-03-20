@@ -9,6 +9,7 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import api from '../../axios/api';
 
 const initialState = {
   user: {
@@ -24,7 +25,7 @@ const initialState = {
 
 export const __getData = createAsyncThunk('USER_DATA', async (payload, thunkAPI) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/user`);
+    const response = await api.get(`/user`);
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -33,7 +34,7 @@ export const __getData = createAsyncThunk('USER_DATA', async (payload, thunkAPI)
 
 export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => {
   try {
-    const { data } = await axios.post(`${process.env.REACT_APP_SERVER}/user`, payload);
+    const { data } = await api.post(`/api/auth/signup`, payload);
 
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
