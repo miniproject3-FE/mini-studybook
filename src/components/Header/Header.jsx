@@ -5,17 +5,23 @@
  */
 
 import React from 'react';
-import { StyledHeader, StyledLi, StyledUl } from './styles';
+import { useNavigate } from 'react-router-dom';
+import { Logo, StyledHeader, StyledLi, StyledUl } from './styles';
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <StyledHeader>
+      <Logo />
       <StyledUl>
-        <StyledLi>Login</StyledLi>
-        <StyledLi>Signup</StyledLi>
+        <StyledLi onClick={()=>navigate('/login')}>Login</StyledLi>
+        <StyledLi onClick={()=>navigate('/signup')}>Signup</StyledLi>
       </StyledUl>
     </StyledHeader>
   );
 }
 
 export default Header;
+
+

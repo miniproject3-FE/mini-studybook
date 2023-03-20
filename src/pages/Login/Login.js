@@ -5,20 +5,19 @@
  */
 
 import React from 'react'
-import useInput from '../../hooks/useInput';
+import useInput from '../../Hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
 import LogoBox from '../../components/LogoBox';
-import LabelInput from '../../components/LabelInput';
 import Button from '../../components/Button';
-
+import FormInput from '../../components/FormLabelInput'
+import { useCookies } from 'react-cookie';
 
 function Login() {
 
   const [userid, idOnChangeHandler, idChangeHandler] = useInput();
   const [password, passwordOnChangeHandler, passwordChangeHandler] = useInput();
-
   const dispatch = useDispatch();
 
   const user = {
@@ -26,12 +25,18 @@ function Login() {
     password,
   };
 
-  const loginOnsubmitHandler = (payload) => {
-    dispatch(__login(payload));
+  const [cookie, setCookie] = useCookies();
+
+
+  const loginOnsubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(__login(user))
+    .then((response)=> {
+      setCookie("token", response.data.Authorization)
+    });
     idChangeHandler("");
     passwordChangeHandler("");
   };
-
 
   return (
     <StyledFormContainer>
@@ -39,28 +44,25 @@ function Login() {
         <LogoBox />
       </StyledHeader>
       <StyledBody>
-        <StyledForm onSubmit={(e) => {
-          e.preventDefault();
-          loginOnsubmitHandler(user);
-        }}
+        <StyledForm onSubmit={loginOnsubmitHandler}
         >
-          <LabelInput
-            require
+          <FormInput
+            required
             label={"ID"}
             id={"id"}
             size={"large"}
             type={"text"}
-            placeholder={"ID를 입력해주세요."}
+            placeholder={"아이디를 입력하세요."}
             value={userid}
             onChange={idOnChangeHandler}
           />
-          <LabelInput
-            require
+          <FormInput
+            required
             label={"PASSWORD"}
             id={"password"}
             size={"large"}
             type={"password"}
-            placeholder={"PASSWORD를 입력해주세요."}
+            placeholder={"비밀번호를 입력하세요."}
             value={password}
             onChange={passwordOnChangeHandler}
           />
