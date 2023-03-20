@@ -37,7 +37,7 @@ export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => 
 
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
-    return thunkAPI.rejectWithValue('error');
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 

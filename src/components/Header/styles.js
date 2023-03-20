@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 
+
+const Logo = styled.div`
+  /* width: 100px;
+  height: 100px;
+  background-image: url('../../assets/images/logo1.png');
+  background-size: cover;
+  border-radius: 50%; */
+`;
+
 const StyledHeader = styled.header`
-  height: 70px;
+  height: 100px;
   width: 100%;
   background-color: #14213d;
   color: white;
 `;
 const StyledUl = styled.ul`
-  height: 70px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -18,7 +27,8 @@ const StyledUl = styled.ul`
 
 const StyledLi = styled.li`
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
 `;
 
-export { StyledHeader, StyledUl, StyledLi };
+export { StyledHeader, StyledUl, StyledLi, Logo };

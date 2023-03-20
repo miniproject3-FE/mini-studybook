@@ -13,7 +13,7 @@ function FormInput(props) {
         {props.label}
       </StyledLabel>
       <StyledInput
-        require
+        required
         size={props.size}
         type={props.type}
         id={props.id}
