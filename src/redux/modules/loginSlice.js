@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 /**
  * 작성자: 김은영, 박찬우
@@ -7,19 +7,17 @@ import { createSlice } from "@reduxjs/toolkit";
  */
 
 const initialState = {
-    "userId": "",
-    "password": "",
-    "userName": "",
-    "email": "",
-}
+  userid: '',
+  password: '',
+  userName: '',
+  email: '',
+};
 
 const loginSlice = createSlice({
-    name: "login",
-    initialState,
-    reducers: {},
-    extraReducers: {
-
-    }
+  name: 'login',
+  initialState,
+  reducers: {},
+  extraReducers: {},
 });
 
 export default loginSlice.reducer;

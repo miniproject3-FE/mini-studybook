@@ -1,11 +1,10 @@
-import React from "react";
-import Header from "./common/Header";
-import LabelInput from "./common/LabelInput";
+import React from 'react';
+import Router from './shared/Router';
 
 function App() {
   return (
     <div>
-      <Header/>
+      <Router />
     </div>
   );
 }
