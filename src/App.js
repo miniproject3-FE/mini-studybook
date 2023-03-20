@@ -1,11 +1,10 @@
-import React from "react";
-import Header from "./common/Header";
-import Login from "./pages/Login";
+import React from 'react';
+import Router from './shared/Router';
 
 function App() {
   return (
     <div>
-      <Login />
+      <Router />
     </div>
   );
 }
