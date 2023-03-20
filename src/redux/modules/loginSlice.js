@@ -27,19 +27,6 @@ const initialState = {
   error: null,
 };
 
-export const __login = createAsyncThunk('login', async (payload, thunkAPI) => {
-  try {
-    console.log(payload);
-    const response = await api.post('/api/auth/login', payload);
-    console.log(response.data);
-    return thunkAPI.fulfillWithValue(response.data);
-    // token을 어디에 담아줄 지 같이 결정해요~~~
-  } catch (error) {
-    console.log('error', error.message);
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
 
 export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => {
   try {
