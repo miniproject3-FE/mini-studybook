@@ -17,6 +17,9 @@ const StyledForm = styled.form`
 
 const StyledBody = styled.div`
   width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 export { StyledWrap, StyledHeader, StyledForm, StyledBody };
