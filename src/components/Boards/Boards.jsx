@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { __getBoards } from '../../redux/modules/boardSlice';
+
 import Card from '../Card';
 
 function Boards() {
@@ -15,26 +16,20 @@ function Boards() {
   const boards = useSelector((state) => state.data);
 
   const [test, setTest] = useState('');
-  const [cookie, setCookie] = useCookies(['token']);
 
   console.log('boards', boards);
 
   useEffect(() => {
     console.log('useEffect');
-    dispatch(__getBoards(cookie.token));
+    dispatch(__getBoards());
   }, []);
 
-    return (
-        <section>
-            <Card />
-            {
-                boards && boards.map((board)=> <Card key={board.id} board={board} />)
-            }
-            
-        </section>
-    )
+  return (
+    <section>
+      <Card />
+      {boards && boards.map((board) => <Card key={board.id} board={board} />)}
+    </section>
+  );
 }
 
 export default Boards;
-
-
