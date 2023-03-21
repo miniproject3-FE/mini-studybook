@@ -5,39 +5,47 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../components/Button';
-import { __boardLike, __boardModify } from '../../redux/modules/boardSlice';
+import { __boardLike, __boardModify, __getBoard } from '../../redux/modules/boardSlice';
 
 function Detail() {
   //const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const getServer = useRef(false);
+
+  //도메인에서 현재페에지 id 값 가져오기
+  const { id } = useParams();
+  const { isLoading, isError, data } = useSelector((state) => state.board.data);
 
   const handlerClickLike = (e) => {
     e.preventDefault();
-    console.log('tes');
-    dispatch(__boardLike());
+    dispatch(__boardLike(id));
   };
 
   const handlerClickModify = (e) => {
     e.preventDefault();
-    console.log('tes');
-    //navigate('/board');
-    //dispatch(__boardModify());
+    navigate(`/board/${id}`);
   };
+  useEffect(() => {
+    console.log('getboard');
+    dispatch(__getBoard(id));
+    console.log('datatttt', data);
+  }, []);
 
+  console.log('selector', data);
   return (
     <StyledWrap>
       <StyledContainer>
         <StyledImageBox>이미지</StyledImageBox>
         <StyledContentBox>
-          <StyledAutherBlock>auther</StyledAutherBlock>
-          <StyledTitleBlock>title</StyledTitleBlock>
-          <StyledContentBlock>body</StyledContentBlock>
+          <StyledAutherBlock>{data.loginid}</StyledAutherBlock>
+          <StyledTitleBlock>{data.title}</StyledTitleBlock>
+          <StyledContentBlock>asda{data.content}</StyledContentBlock>
           <StyledLikeBlock>
             <StyledLikeBox onClick={handlerClickLike}>좋아요</StyledLikeBox>
             <StyledButton onClick={handlerClickModify}>수정</StyledButton>
