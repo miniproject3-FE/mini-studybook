@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import Main from '../pages/Main/Main';
 import Signup from '../pages/Signup/Signup';
+import Board from '../pages/Board/Board';
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
           <Route path={'/'} element={<Main />} />
           <Route path={'/signup'} element={<Signup />} />
           <Route path={'/login'} element={<Login />} />
+          <Route path={'/board'} element={<Board />} />
         </Routes>
       </BrowserRouter>
     </CookiesProvider>

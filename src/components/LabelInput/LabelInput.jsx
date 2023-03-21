@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { StyledLabel, StyledInput, StyledLabelBlock } from './styles'
+import { StyledLabel, StyledInput, StyledLabelBlock } from './styles';
 
 function LabelInput(props) {
   return (
@@ -29,5 +29,3 @@ function LabelInput(props) {
 }
 
 export default LabelInput;
-
-
