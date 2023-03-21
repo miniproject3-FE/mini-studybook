@@ -7,24 +7,25 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useCookies } from "react-cookie";
 
 function Card(board) {
     
     const navigate = useNavigate();
-    const [cookie, setCookie] = useCookies(['token']);
+
 
     return(
         <StyledCardBox>
             <StyledCard
             onClick={()=> {
-                navigate('/post/{board.id}')
+                navigate('/detail')
             }}
             >
-                <Title>안녕하신지{board.title}</Title>
-                <Contents>이것은 내용이다{board.content}</Contents>
+                <Title>{board.title}</Title>
+                <Contents>{board.content}</Contents>
             </StyledCard>
-                {!cookie.token? <Like></Like> : board.islike? <Like>❤️</Like> : <Like>🤍</Like>}
+                {
+                // !cookie.token? <Like></Like> : 
+                board.islike? <Like>❤️</Like> : <Like>🤍</Like>}
                 
 
         </StyledCardBox>

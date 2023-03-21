@@ -32,14 +32,13 @@ const initialState = {
   error: null,
 };
 
+
+
 export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
   try {
-    console.log(payload);
     const response = await api.post('/api/auth/login', payload);
-    console.log(response.data);
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
-    console.log('error', error.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -67,7 +66,7 @@ const loginSlice = createSlice({
     [__login.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      console.log(action);
+      // console.log(action);
     },
   },
 });

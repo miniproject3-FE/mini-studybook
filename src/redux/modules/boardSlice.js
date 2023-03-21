@@ -6,6 +6,7 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from '../../axios/api';
+import axios from 'axios';
 
 // 초기값
 const initialState = {
@@ -22,11 +23,14 @@ const initialState = {
   isSuccess: false,
 };
 
-export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
+// 전체 게시글 조회
+export const __getBoards = createAsyncThunk(
+  'GET_BOARDS', 
+  async (payload, thunkAPI) => {
   try {
-    const { data } = await api.get('/api/post');
-    console.log('get response.data->', data);
-    return thunkAPI.fulfillWithValue(data);
+    const response = await axios.get('http://13.125.185.202:8080/api/post');
+    // console.log('get response.data->', response.data);
+    return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -152,7 +156,7 @@ const boardSlice = createSlice({
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.data = action.payload.data;
-      console.log('get state.data ->', state.data);
+      console.log('state?', state.data) // [{}, {}, {}]
     },
     [__getBoards.rejected]: (state, action) => {
       state.isLoading = false;

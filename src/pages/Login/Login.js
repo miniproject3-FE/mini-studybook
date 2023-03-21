@@ -12,7 +12,6 @@ import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './sty
 import LogoBox from '../../components/LogoBox';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput/FormLabelInput';
-import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -21,7 +20,7 @@ function Login() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [cookie, setCookie] = useCookies(['token']);
+
   const user = {
     loginid,
     password,
@@ -31,7 +30,7 @@ function Login() {
     e.preventDefault();
     dispatch(__login(user)).then((response) => {
       if (response.type === 'logout/fulfilled') {
-        setCookie('token', response.data.Authorization);
+        navigate = ('/')
       }
     });
     idChangeHandler('');

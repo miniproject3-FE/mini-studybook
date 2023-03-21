@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { CookiesProvider } from 'react-cookie';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import Main from '../pages/Main/Main';
@@ -16,7 +15,6 @@ import Detail from '../pages/Detail/Detail';
 
 function Router() {
   return (
-    <CookiesProvider>
       <BrowserRouter>
         <Routes>
           <Route path={'/'} element={<Main />} />
@@ -26,7 +24,6 @@ function Router() {
           <Route path={'/detail'} element={<Detail />} />
         </Routes>
       </BrowserRouter>
-    </CookiesProvider>
   );
 }
 
