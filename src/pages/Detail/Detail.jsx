@@ -20,7 +20,7 @@ function Detail() {
 
   //도메인에서 현재페에지 id 값 가져오기
   const { id } = useParams();
-  const { isLoading, isError, data } = useSelector((state) => state.board);
+  const { isLoading, isError, data } = useSelector((state) => state.board.data);
 
   const handlerClickLike = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ function Detail() {
         <StyledContentBox>
           <StyledAutherBlock>{data.loginid}</StyledAutherBlock>
           <StyledTitleBlock>{data.title}</StyledTitleBlock>
-          <StyledContentBlock>{data.content}</StyledContentBlock>
+          <StyledContentBlock>asda{data.content}</StyledContentBlock>
           <StyledLikeBlock>
             <StyledLikeBox onClick={handlerClickLike}>좋아요</StyledLikeBox>
             <StyledButton onClick={handlerClickModify}>수정</StyledButton>
