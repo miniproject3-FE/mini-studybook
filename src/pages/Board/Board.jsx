@@ -6,7 +6,6 @@
  */
 
 import React, { useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../../components/Button';
@@ -14,14 +13,14 @@ import FormInput from '../../components/FormLabelInput';
 import LabelTextArea from '../../components/LabelTextarea/LabelTextArea';
 import useInput from '../../hooks/useInput';
 import { __boardModify, __boardWriting } from '../../redux/modules/boardSlice';
-import { setCookie } from '../../auth/Cookie';
+import { useNavigate } from 'react-router-dom';
 
 function Board() {
   const [title, setTitle] = useInput();
   const [body, setBody] = useInput();
-  const [isSave, setSave] = useState(false);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   const handlerSubmit = (e) => {
     e.preventDefault();
 
@@ -29,15 +28,14 @@ function Board() {
       title,
       content: body,
     };
-
     console.log('paylaod', paylaod);
-    dispatch(__boardWriting(paylaod));
-
-    //dispatch(__boardModify(paylaod));
-    setSave(!isSave);
+    dispatch(__boardWriting(paylaod)).then((response) => {
+      if (response.type === 'BOARD_WRITING/fulfilled') {
+        navigate('/');
+      }
+    });
   };
 
-  console.log(isSave);
   return (
     <StyledWrap>
       <StyledBoardBlock>
@@ -60,11 +58,7 @@ function Board() {
             label="내용"
           />
           <StyledButtonBox>
-            {isSave ? (
-              <Button size="medium" value="수정하기" />
-            ) : (
-              <Button size="medium" value="저장하기" />
-            )}
+            <Button size="medium" value="저장하기" />
           </StyledButtonBox>
         </StyledBodyForm>
       </StyledBoardBlock>

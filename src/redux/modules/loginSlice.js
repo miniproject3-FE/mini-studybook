@@ -33,10 +33,7 @@ const initialState = {
   error: null,
 };
 
-
-
 export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
-  console.log('payload', payload);
   try {
     const response = await api.post('/api/auth/login', payload);
     setCookie('token', response.headers.authorization);

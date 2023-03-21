@@ -11,10 +11,12 @@ import api from '../../axios/api';
 const initialState = {
   data: [
     {
-      id: 2,
-      title: 'title01',
-      loginid: 'id011111',
+      createdAt: '2023-03-20 PM 8:28',
+      id: 1,
       islike: false,
+      likecount: 1,
+      loginid: 'id0222222',
+      title: 'title06',
     },
   ],
   error: null,
@@ -34,26 +36,22 @@ export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkA
 });
 
 // 선택 게시글 조회
-export const __getBoard = createAsyncThunk(
-  'GET_BOARD',
-  initialState,
-  async (payload, thunkAPI) => {
-    try {
-      console.log('__getBoard');
-      const response = await api.get(`/api/post/${payload}`);
-      return thunkAPI.fulfillWithValue(response);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const __getBoard = createAsyncThunk('GET_BOARD', async (payload, thunkAPI) => {
+  try {
+    console.log('__getBoard');
+    const response = await api.get(`/api/post/${payload}`);
+    return thunkAPI.fulfillWithValue(response);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
 // 게시글 작성
 export const __boardWriting = createAsyncThunk(
   'BOARD_WRITING',
   async (payload, thunkAPI) => {
     try {
-      const response = await api.post('./api/post', __boardWriting);
+      const response = await api.post('./api/post', payload);
       console.log('response', response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
@@ -161,6 +159,18 @@ const boardSlice = createSlice({
       console.log('state?', state.data); // [{}, {}, {}]
     },
     [__getBoards.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getBoard.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getBoard.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload.data;
+      console.log('state?', state.data); // [{}, {}, {}]
+    },
+    [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
