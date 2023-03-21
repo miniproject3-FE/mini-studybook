@@ -5,19 +5,12 @@
  */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import React from 'react';
 import api from '../../axios/api';
 
 const initialState = {
   data: [
     {
       id: 2,
-      title: 'title01',
-      loginid: 'id011111',
-      islike: false,
-    },
-    {
-      id: 1,
       title: 'title01',
       loginid: 'id011111',
       islike: false,
@@ -87,6 +80,19 @@ export const __boardDelete = createAsyncThunk(
   }
 );
 
+export const __boardLike = createAsyncThunk(
+  'BOARD_LIKE',
+  initialState,
+  async (payload, thunkAPI) => {
+    try {
+      const response = await api.post(`/api/post/${payload}`);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const boardSlice = createSlice({
   name: 'board',
   initialState,
@@ -144,6 +150,20 @@ const boardSlice = createSlice({
     [__getBoards.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+
+    [__boardLike.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__boardLike.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.board = action;
+    },
+    [__boardLike.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.error = action;
     },
   },
 });

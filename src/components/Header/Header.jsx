@@ -12,14 +12,14 @@ import { __logout } from '../../redux/modules/loginSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
 
 function Header() {
-  const [cookie, setCookie, removeCookie] = useCookies(['id']);
+  const [cookie, setCookie, removeCookie] = useCookies(['token']);
   const dispatch = useDispatch();
 
   const [logout, setLogout] = useState(false);
   const navigate = useNavigate();
 
   const handlerClickLogout = () => {
-    removeCookie(['id']);
+    removeCookie(['token']);
   };
 
   if (logout === true) {

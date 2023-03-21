@@ -21,7 +21,7 @@ function Login() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [cookie, setCookie] = useCookies();
+  const [cookie, setCookie] = useCookies(['token']);
   const user = {
     loginid,
     password,
