@@ -8,16 +8,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import React from "react";
 import api from "../../axios/api"
 
-export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
-    try {
-        const {data} = await api.get('/api/post')
-        console.log('get response.data->', data)
-        return thunkAPI.fulfillWithValue(data)
-    } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
-    }
-})
 
+// 초기값
 const initialState = {
     data: [
         {
@@ -38,8 +30,19 @@ const initialState = {
     isSuccess: false,
 }
 
+// 전체 게시글 조회
+export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
+    try {
+        const {data} = await api.get('/api/post')
+        console.log('get response.data->', data)
+        return thunkAPI.fulfillWithValue(data)
+    } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+    }
+})
 
 
+// 선택 게시글 조회
 export const __getBoard = createAsyncThunk(
   'GET_BOARD',
   initialState,
@@ -51,6 +54,7 @@ export const __getBoard = createAsyncThunk(
   }
 );
 
+// 게시글 작성
 export const __boardWriting = createAsyncThunk(
   'BOARD_WRITING',
   async (payload, thunkAPI) => {
@@ -63,6 +67,7 @@ export const __boardWriting = createAsyncThunk(
   }
 );
 
+// 게시글 수정
 export const __boardModify = createAsyncThunk(
   'BOARD_MODIFY',
   async (payload, thunkAPI) => {
@@ -75,6 +80,7 @@ export const __boardModify = createAsyncThunk(
   }
 );
 
+// 게시글 삭제
 export const __boardDelete = createAsyncThunk(
   'BOARD_DELETE',
   async (payload, thunkAPI) => {
@@ -87,6 +93,8 @@ export const __boardDelete = createAsyncThunk(
   }
 );
 
+
+// 게시글 Slice
 const boardSlice = createSlice({
   name: 'board',
   initialState,
@@ -149,4 +157,3 @@ const boardSlice = createSlice({
 });
 
 export default boardSlice.reducer;
-

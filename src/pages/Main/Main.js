@@ -6,7 +6,7 @@
 
 import React from 'react'
 import Header from '../../components/Header'
-import Posts from '../../components/Posts'
+import Boards from '../../components/Boards'
 
 
 function Main() {
@@ -14,7 +14,7 @@ function Main() {
   return (
     <>
       <Header />
-      <Posts />
+      <Boards />
     </>
   )
 }

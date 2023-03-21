@@ -6,26 +6,28 @@
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getPosts } from "../../redux/modules/boardSlice";
+import { __getBoards } from "../../redux/modules/boardSlice";
 import Card from "../Card";
 
-function Posts() {
+
+function Boards() {
 
     const dispatch = useDispatch();
     const boards = useSelector((state) => state.data)
 
     useEffect(()=> {
-        dispatch(__getPosts())
+        dispatch(__getBoards())
     },[]);
 
     return (
         <section>
-            {boards.map((board)=> {
-                <Card key={board.id} />
-            })}
+            <Card />
+            {
+                boards && boards.map((board)=> <Card key={board.id} board={board} />)
+            }
             
         </section>
     )
 }
 
-export default Posts;
+export default Boards;

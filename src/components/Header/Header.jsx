@@ -6,9 +6,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { __logout } from '../../redux/modules/loginSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
+
 
 function Header() {
   const [cookie, setCookie, removeCookie] = useCookies(['id']);
