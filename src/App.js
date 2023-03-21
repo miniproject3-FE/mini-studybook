@@ -4,7 +4,7 @@ import DragBox from './components/DragDrop/DragBox';
 function App() {
   return (
     <div>
-      <DragBox />
+      <Router />
     </div>
   );
 }
