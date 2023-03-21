@@ -13,10 +13,12 @@ const instance = axios.create({
   timeout: 4000,
 });
 
+
 //use 함수 내에는 fullfill 함수와 reject 함수를 콜백으로 받는다.
 instance.interceptors.request.use(
   function (config) {
     //요청 보내기전 수행
+    // 토큰보내기
     return config;
   },
   function (error) {

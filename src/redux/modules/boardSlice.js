@@ -8,7 +8,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import React from "react";
 import api from "../../axios/api"
 
-export const __getPosts = createAsyncThunk('GET_POSTS', async (payload, thunkAPI) => {
+export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
     try {
         const {data} = await api.get('/api/post')
         console.log('get response.data->', data)
@@ -19,7 +19,7 @@ export const __getPosts = createAsyncThunk('GET_POSTS', async (payload, thunkAPI
 })
 
 const initialState = {
-    posts: [
+    data: [
         {
             "id": 2,
             "title": "title01",
@@ -38,8 +38,8 @@ const initialState = {
     isSuccess: false,
 }
 
-const getPostsSlice = createSlice({
-    name: 'getPosts',
+const boardSlice = createSlice({
+    name: 'board',
     initialState,
     reducers: {},
     extraReducers: {
@@ -48,8 +48,8 @@ const getPostsSlice = createSlice({
         },
         [__getPosts.fulfilled]: (state, action) => {
             state.isLoading = false;
-            state.posts = action.payload.data
-            console.log('get state.posts ->', state.data)
+            state.data = action.payload.data
+            console.log('get state.data ->', state.data)
         },
         [__getPosts.rejected]: (state, action) => {
             state.isLoading = false;

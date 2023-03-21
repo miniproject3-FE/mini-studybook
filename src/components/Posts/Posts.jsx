@@ -6,22 +6,22 @@
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getPosts } from "../../redux/modules/getPostsSlice";
+import { __getPosts } from "../../redux/modules/boardSlice";
 import Card from "../Card";
 
 function Posts() {
 
     const dispatch = useDispatch();
-    const { posts } = useSelector((state) => state.posts)
+    const boards = useSelector((state) => state.data)
 
     useEffect(()=> {
         dispatch(__getPosts())
-    }, ['뭘 넣어야하지']);
+    },[]);
 
     return (
         <section>
-            {posts.map((post)=> {
-                <Card key={post.id} />
+            {boards.map((board)=> {
+                <Card key={board.id} />
             })}
             
         </section>
