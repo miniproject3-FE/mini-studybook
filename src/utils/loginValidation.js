@@ -23,7 +23,7 @@
  */
 
 const idCheck = (id) => {
-  const idRegEx = /^[a-z0-9]{8,16}$/;
+  const idRegEx = /^[a-z0-9]{6,16}$/;
   let message = '';
   let isError = !idRegEx.test(id);
 

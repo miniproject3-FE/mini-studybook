@@ -14,21 +14,23 @@ import Button from '../../components/Button';
 import { __boardLike, __boardModify } from '../../redux/modules/boardSlice';
 
 function Detail() {
-  const data = useSelector((state) => state.data);
+  //const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [cookie, setCookies] = useCookies(['token']);
+
+  console.log(cookie.token.payload);
   const handlerClickLike = (e) => {
     e.preventDefault();
     console.log('tes');
-
-    dispatch(__boardLike());
+    dispatch(__boardLike(cookie.token.payload));
   };
 
   const handlerClickModify = (e) => {
     e.preventDefault();
     console.log('tes');
-    navigate('/board');
+    //navigate('/board');
     //dispatch(__boardModify());
   };
 
