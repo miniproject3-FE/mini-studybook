@@ -17,13 +17,10 @@ function Detail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [cookie, setCookies] = useCookies(['token']);
-
-  console.log(cookie.token.payload);
   const handlerClickLike = (e) => {
     e.preventDefault();
     console.log('tes');
-    dispatch(__boardLike(cookie.token.payload));
+    dispatch(__boardLike());
   };
 
   const handlerClickModify = (e) => {
