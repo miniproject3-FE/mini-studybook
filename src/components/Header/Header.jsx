@@ -21,6 +21,8 @@ function Header() {
 
   };
 
+  
+
   if (logout === true) {
     setLogout(false);
     navigate('/login');
