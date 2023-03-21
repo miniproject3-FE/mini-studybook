@@ -9,7 +9,7 @@ import { StyledErrorDiv, StyledLabel, StyledInput, StyledLabelBlock } from './st
 function FormInput(props) {
   return (
     <StyledLabelBlock>
-      <StyledLabel size={props.size} htmlFor={props.id}>
+      <StyledLabel fontsize={props.fontsize} htmlFor={props.id}>
         {props.label}
       </StyledLabel>
       <StyledInput
