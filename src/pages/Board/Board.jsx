@@ -28,7 +28,6 @@ function Board() {
       content: body,
     };
 
-    console.log('tst');
     isSave ? dispatch(__boardWriting(paylaod)) : dispatch(__boardModify(paylaod));
     setSave(!isSave);
   };
@@ -41,50 +40,20 @@ function Board() {
           <StyledPlus>+</StyledPlus>
         </StyledImageBlock>
         <StyledBodyForm onSubmit={handlerSubmit}>
-          {isSave === false ? (
-            <>
-              <FormInput
-                value={title}
-                onChange={setTitle}
-                fontsize="30px"
-                label="제목"
-                size="board"
-                disabled={true}
-              ></FormInput>
-              <LabelTextArea
-                value={body}
-                onChange={setBody}
-                id="boardTextarea"
-                label="내용"
-              />
-            </>
-          ) : (
-            <>
-              {' '}
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '10px',
-                  flexDirection: 'column',
-                  height: '120px',
-                }}
-              >
-                <StyledLabel>제목</StyledLabel>
-                <StyledTitleBox>{title}</StyledTitleBox>
-              </div>
-              <StyledLabel>내용</StyledLabel>
-              <div
-                style={{
-                  width: '100%',
-                  height: '480px',
-                  fontSize: '1.5rem',
-                }}
-              >
-                {title}
-              </div>
-            </>
-          )}
-
+          <FormInput
+            value={title}
+            onChange={setTitle}
+            fontsize="30px"
+            label="제목"
+            size="board"
+            disabled={true}
+          ></FormInput>
+          <LabelTextArea
+            value={body}
+            onChange={setBody}
+            id="boardTextarea"
+            label="내용"
+          />
           <StyledButtonBox>
             {isSave ? (
               <Button size="medium" value="수정하기" />

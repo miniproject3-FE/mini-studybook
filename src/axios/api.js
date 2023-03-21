@@ -14,13 +14,12 @@ const instance = axios.create({
   timeout: 4000,
 });
 
-
 //use 함수 내에는 fullfill 함수와 reject 함수를 콜백으로 받는다.
 instance.interceptors.request.use(
   function (config) {
     //요청 보내기전 수행
     //특정 페이지는 쿠키를 주면 안되니... 이건 json-server test 이후 적용
-    const [cookie] = useCookies(['id']);
+    const [cookie] = useCookies(['token']);
     console.log('config', config);
     //config.headers.Authorization = cookie.id;
     return config;

@@ -21,7 +21,7 @@ function Login() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [cookie, setCookie] = useCookies();
+  const [cookie, setCookie] = useCookies(['token']);
   const user = {
     loginid,
     password,
@@ -70,11 +70,7 @@ function Login() {
             value={password}
             onChange={passwordOnChangeHandler}
           />
-          <Button
-            size="large"
-            value="로그인"
-            background="#14213D"
-          />
+          <Button size="large" value="로그인" background="#14213D" />
         </StyledForm>
       </StyledBody>
     </StyledFormContainer>

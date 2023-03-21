@@ -4,43 +4,33 @@
  * 날짜: 2023-03-21
  */
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import React from "react";
-import api from "../../axios/api"
-
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import api from '../../axios/api';
 
 // 초기값
 const initialState = {
-    data: [
-        {
-            "id": 2,
-            "title": "title01",
-            "loginid": "id011111",
-            "islike": false
-        },
-        {
-            "id": 1,
-            "title": "title01",
-            "loginid": "id011111",
-            "islike": false
-        }
-    ],
-    error: null,
-    isLoading: false,
-    isSuccess: false,
-}
+  data: [
+    {
+      id: 2,
+      title: 'title01',
+      loginid: 'id011111',
+      islike: false,
+    },
+  ],
+  error: null,
+  isLoading: false,
+  isSuccess: false,
+};
 
-// 전체 게시글 조회
 export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
-    try {
-        const {data} = await api.get('/api/post')
-        console.log('get response.data->', data)
-        return thunkAPI.fulfillWithValue(data)
-    } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
-    }
-})
-
+  try {
+    const { data } = await api.get('/api/post');
+    console.log('get response.data->', data);
+    return thunkAPI.fulfillWithValue(data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 // 선택 게시글 조회
 export const __getBoard = createAsyncThunk(
@@ -50,7 +40,9 @@ export const __getBoard = createAsyncThunk(
     try {
       const response = await api.get(`/api/post/${payload}`);
       return thunkAPI.fulfillWithValue(response);
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
@@ -86,6 +78,19 @@ export const __boardDelete = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await api.delete(`./api/post/${payload}`);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const __boardLike = createAsyncThunk(
+  'BOARD_LIKE',
+  initialState,
+  async (payload, thunkAPI) => {
+    try {
+      const response = await api.post(`/api/post/${payload}`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -142,17 +147,31 @@ const boardSlice = createSlice({
       state.error = action;
     },
     [__getBoards.pending]: (state, action) => {
-        state.isLoading = true
+      state.isLoading = true;
     },
     [__getBoards.fulfilled]: (state, action) => {
-        state.isLoading = false;
-        state.data = action.payload.data
-        console.log('get state.data ->', state.data)
+      state.isLoading = false;
+      state.data = action.payload.data;
+      console.log('get state.data ->', state.data);
     },
     [__getBoards.rejected]: (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload
-    }
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    [__boardLike.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__boardLike.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.board = action;
+    },
+    [__boardLike.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.error = action;
+    },
   },
 });
 
