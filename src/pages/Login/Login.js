@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
-import useInput from '../../hooks/useInput';
+import useInput from '../../Hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
@@ -31,7 +31,7 @@ function Login() {
     e.preventDefault();
     dispatch(__login(user)).then((response) => {
       if (response.type === 'logout/fulfilled') {
-        setCookie('id', response.data.Authorization);
+        setCookie('token', response.data.Authorization);
       }
     });
     idChangeHandler('');
@@ -71,7 +71,6 @@ function Login() {
             onChange={passwordOnChangeHandler}
           />
           <Button
-            onClick={loginOnsubmitHandler}
             size="large"
             value="로그인"
             background="#14213D"

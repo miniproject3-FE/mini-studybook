@@ -14,6 +14,7 @@ const instance = axios.create({
   timeout: 4000,
 });
 
+
 //use 함수 내에는 fullfill 함수와 reject 함수를 콜백으로 받는다.
 instance.interceptors.request.use(
   function (config) {

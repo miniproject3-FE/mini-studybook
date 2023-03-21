@@ -1,11 +1,44 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import api from '../../axios/api';
+/**
+ * 작성자: 김은영
+ * 목적: 게시글 정보를 가져오기 위한 slice생성
+ * 날짜: 2023-03-21
+ */
+
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import React from "react";
+import api from "../../axios/api"
+
+export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
+    try {
+        const {data} = await api.get('/api/post')
+        console.log('get response.data->', data)
+        return thunkAPI.fulfillWithValue(data)
+    } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+    }
+})
+
 const initialState = {
-  data: { title: '', content: '' },
-  isLoading: false,
-  isError: false,
-  error: '',
-};
+    data: [
+        {
+            "id": 2,
+            "title": "title01",
+            "loginid": "id011111",
+            "islike": false
+        },
+        {
+            "id": 1,
+            "title": "title01",
+            "loginid": "id011111",
+            "islike": false
+        }
+    ],
+    error: null,
+    isLoading: false,
+    isSuccess: false,
+}
+
+
 
 export const __getBoard = createAsyncThunk(
   'GET_BOARD',
@@ -100,7 +133,20 @@ const boardSlice = createSlice({
       state.isError = true;
       state.error = action;
     },
+    [__getBoards.pending]: (state, action) => {
+        state.isLoading = true
+    },
+    [__getBoards.fulfilled]: (state, action) => {
+        state.isLoading = false;
+        state.data = action.payload.data
+        console.log('get state.data ->', state.data)
+    },
+    [__getBoards.rejected]: (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload
+    }
   },
 });
 
 export default boardSlice.reducer;
+
