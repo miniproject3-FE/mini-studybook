@@ -6,7 +6,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { __logout } from '../../redux/modules/loginSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
@@ -19,14 +18,7 @@ function Header() {
   const navigate = useNavigate();
 
   const handlerClickLogout = () => {
-    dispatch(__logout()).then((response) => {
-      if (response.type === 'logout/fulfilled') {
-        setLogout(true);
-        removeCookie(['id']);
-      } else if (response.type === 'logout/rejected') {
-        setLogout(false);
-      }
-    });
+    removeCookie(['id']);
   };
 
   if (logout === true) {

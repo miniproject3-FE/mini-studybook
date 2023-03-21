@@ -10,6 +10,11 @@
  *
  * 수정: 500error, payload 에러
  */
+/**
+ * 수정자 : 박찬우
+ * 목적 : logout api 제거. (logout 시 클라이언트쪽에서 쿠기 제거만 한다.)
+ * 작성 날짜 : 2023.03.21
+ */
 
 import { createAsyncThunk, createSlice, isRejectedWithValue } from '@reduxjs/toolkit';
 import api from '../../axios/api';
@@ -39,13 +44,13 @@ export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
   }
 });
 
-export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => {
-  try {
-    const response = await api.get('/api/auth/logout');
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
+// export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => {
+//   try {
+//     const response = await api.get('/api/auth/logout');
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
 
 const loginSlice = createSlice({
   name: 'login',
@@ -63,17 +68,6 @@ const loginSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
       console.log(action);
-    },
-    [__logout.pending]: (state, action) => {
-      state.isloading = true;
-    },
-    [__logout.fulfilled]: (state, aciton) => {
-      state.isloading = false;
-      state.isError = false;
-    },
-    [__logout.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
     },
   },
 });

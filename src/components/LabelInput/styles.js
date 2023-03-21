@@ -26,7 +26,7 @@ const sizes = {
   board: {
     width: '100%',
     height: '2.5rem',
-    fontSize: '1,5rem',
+    fontSize: '1.5rem',
     boxShadow: `rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
   rgb(209, 213, 219) 0px 0px 0px 1px inset`,
   },
@@ -35,10 +35,10 @@ const sizes = {
 const StyledLabel = styled.label`
   font-weight: 700;
 
-  ${({ fontSize }) =>
-    fontSize &&
+  ${({ fontsize }) =>
+    fontsize &&
     css`
-      font-size: ${fontSize};
+      font-size: ${fontsize};
     `}
 `;
 const StyledInput = styled.input`

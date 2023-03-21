@@ -7,6 +7,7 @@
  */
 
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
@@ -18,7 +19,10 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     //요청 보내기전 수행
-    // 토큰보내기
+    //특정 페이지는 쿠키를 주면 안되니... 이건 json-server test 이후 적용
+    const [cookie] = useCookies(['id']);
+    console.log('config', config);
+    //config.headers.Authorization = cookie.id;
     return config;
   },
   function (error) {
