@@ -14,8 +14,10 @@ import { StyledHeader, StyledLi, StyledUl } from './styles';
 function Header() {
   const [cookie, setCookie, removeCookie] = useCookies(['id']);
   const dispatch = useDispatch();
+
   const [logout, setLogout] = useState(false);
   const navigate = useNavigate();
+
   const handlerClickLogout = () => {
     dispatch(__logout()).then((response) => {
       if (response.type === 'logout/fulfilled') {
@@ -33,16 +35,22 @@ function Header() {
   }
 
   return (
-    <StyledHeader>
-      <StyledUl>
-        {cookie.id !== undefined ? (
-          <StyledLi onClick={handlerClickLogout}>Logout</StyledLi>
-        ) : (
-          <StyledLi>Login</StyledLi>
-        )}
-        <StyledLi>Signup</StyledLi>
-      </StyledUl>
-    </StyledHeader>
+
+      <StyledHeader>
+        <StyledUl>
+          {cookie.id !== undefined ? (
+            <StyledLi onClick={handlerClickLogout}>Logout</StyledLi>
+          ) : (
+            <StyledLi onClick={() => {
+              navigate('/login')
+            }}>Login</StyledLi>
+          )}
+          <StyledLi onClick={() => {
+            navigate('/signup')
+          }}>Signup</StyledLi>
+        </StyledUl>
+      </StyledHeader>
+
   );
 }
 

@@ -10,11 +10,13 @@ import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import singup from '../modules/signupSlice';
 import login from '../modules/loginSlice'
+import getPosts from '../modules/getPostsSlice';
 
 const store = configureStore({
   reducer: {
     singup,
     login,
+    getPosts,
   },
 });
 
