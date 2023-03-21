@@ -4,28 +4,26 @@
  * 날짜: 2023-03-21
  */
 
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { __getPosts } from "../../redux/modules/boardSlice";
-import Card from "../Card";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { __getBoards } from '../../redux/modules/boardSlice';
+import Card from '../Card';
 
 function Posts() {
+  const dispatch = useDispatch();
+  const boards = useSelector((state) => state.data);
 
-    const dispatch = useDispatch();
-    const boards = useSelector((state) => state.data)
+  useEffect(() => {
+    dispatch(__getBoards());
+  }, []);
 
-    useEffect(()=> {
-        dispatch(__getPosts())
-    },[]);
-
-    return (
-        <section>
-            {boards.map((board)=> {
-                <Card key={board.id} />
-            })}
-            
-        </section>
-    )
+  return (
+    <section>
+      {boards.map((board) => {
+        <Card key={board.id} />;
+      })}
+    </section>
+  );
 }
 
 export default Posts;

@@ -4,41 +4,39 @@
  * 날짜: 2023-03-21
  */
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import React from "react";
-import api from "../../axios/api"
-
-export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
-    try {
-        const {data} = await api.get('/api/post')
-        console.log('get response.data->', data)
-        return thunkAPI.fulfillWithValue(data)
-    } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
-    }
-})
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import React from 'react';
+import api from '../../axios/api';
 
 const initialState = {
-    data: [
-        {
-            "id": 2,
-            "title": "title01",
-            "loginid": "id011111",
-            "islike": false
-        },
-        {
-            "id": 1,
-            "title": "title01",
-            "loginid": "id011111",
-            "islike": false
-        }
-    ],
-    error: null,
-    isLoading: false,
-    isSuccess: false,
-}
+  data: [
+    {
+      id: 2,
+      title: 'title01',
+      loginid: 'id011111',
+      islike: false,
+    },
+    {
+      id: 1,
+      title: 'title01',
+      loginid: 'id011111',
+      islike: false,
+    },
+  ],
+  error: null,
+  isLoading: false,
+  isSuccess: false,
+};
 
-
+export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
+  try {
+    const { data } = await api.get('/api/post');
+    console.log('get response.data->', data);
+    return thunkAPI.fulfillWithValue(data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 export const __getBoard = createAsyncThunk(
   'GET_BOARD',
@@ -47,7 +45,9 @@ export const __getBoard = createAsyncThunk(
     try {
       const response = await api.get(`/api/post/${payload}`);
       return thunkAPI.fulfillWithValue(response);
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
@@ -134,19 +134,18 @@ const boardSlice = createSlice({
       state.error = action;
     },
     [__getBoards.pending]: (state, action) => {
-        state.isLoading = true
+      state.isLoading = true;
     },
     [__getBoards.fulfilled]: (state, action) => {
-        state.isLoading = false;
-        state.data = action.payload.data
-        console.log('get state.data ->', state.data)
+      state.isLoading = false;
+      state.data = action.payload.data;
+      console.log('get state.data ->', state.data);
     },
     [__getBoards.rejected]: (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload
-    }
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
 export default boardSlice.reducer;
-

@@ -6,6 +6,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { __logout } from '../../redux/modules/loginSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
@@ -27,22 +28,28 @@ function Header() {
   }
 
   return (
-
-      <StyledHeader>
-        <StyledUl>
-          {cookie.id !== undefined ? (
-            <StyledLi onClick={handlerClickLogout}>Logout</StyledLi>
-          ) : (
-            <StyledLi onClick={() => {
-              navigate('/login')
-            }}>Login</StyledLi>
-          )}
-          <StyledLi onClick={() => {
-            navigate('/signup')
-          }}>Signup</StyledLi>
-        </StyledUl>
-      </StyledHeader>
-
+    <StyledHeader>
+      <StyledUl>
+        {cookie.id !== undefined ? (
+          <StyledLi onClick={handlerClickLogout}>Logout</StyledLi>
+        ) : (
+          <StyledLi
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
+            Login
+          </StyledLi>
+        )}
+        <StyledLi
+          onClick={() => {
+            navigate('/signup');
+          }}
+        >
+          Signup
+        </StyledLi>
+      </StyledUl>
+    </StyledHeader>
   );
 }
 

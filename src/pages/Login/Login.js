@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
-import useInput from '../../Hooks/useInput';
+import useInput from '../../hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
 import { StyledBody, StyledForm, StyledFormContainer, StyledHeader } from './styles';
@@ -70,11 +70,7 @@ function Login() {
             value={password}
             onChange={passwordOnChangeHandler}
           />
-          <Button
-            size="large"
-            value="로그인"
-            background="#14213D"
-          />
+          <Button size="large" value="로그인" background="#14213D" />
         </StyledForm>
       </StyledBody>
     </StyledFormContainer>
