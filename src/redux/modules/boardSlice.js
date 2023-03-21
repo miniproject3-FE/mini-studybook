@@ -5,9 +5,7 @@
  */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import api from '../../axios/api';
-import axios from 'axios';
 
 // 초기값
 const initialState = {
@@ -25,9 +23,7 @@ const initialState = {
 };
 
 // 전체 게시글 조회
-export const __getBoards = createAsyncThunk(
-  'GET_BOARDS', 
-  async (payload, thunkAPI) => {
+export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
   try {
     console.log('get response.data->', data);
     const { data } = await api.get('/api/post');
@@ -162,7 +158,7 @@ const boardSlice = createSlice({
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.data = action.payload.data;
-      console.log('state?', state.data) // [{}, {}, {}]
+      console.log('state?', state.data); // [{}, {}, {}]
     },
     [__getBoards.rejected]: (state, action) => {
       state.isLoading = false;

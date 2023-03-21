@@ -13,7 +13,7 @@ import { getCookie } from '../auth/Cookie';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
-  timeout: 10000,
+  timeout: 3000,
 });
 
 //use 함수 내에는 fullfill 함수와 reject 함수를 콜백으로 받는다.
