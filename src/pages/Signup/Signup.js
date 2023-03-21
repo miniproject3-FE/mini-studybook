@@ -75,8 +75,12 @@ function Signup() {
       };
       console.log('newUser', newUser);
 
-      dispatch(__signup(newUser));
-      navigate('/login');
+      dispatch(__signup(newUser)).then((response) => {
+        console.log(response);
+        if (response.type === 'signup/fulfilled') {
+          navigate('/login');
+        }
+      });
     }
   }, [handlerSubmit]);
 

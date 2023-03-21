@@ -4,7 +4,7 @@
  * 작성 날짜: 2023-03-18
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import useInput from '../../hooks/useInput';
 import { useDispatch } from 'react-redux';
 import { __login } from '../../redux/modules/loginSlice';
@@ -26,11 +26,10 @@ function Login() {
     password,
   };
 
-  const loginOnsubmitHandler = (e) => {
-    e.preventDefault();
+  const loginOnsubmitHandler = (user) => {
     dispatch(__login(user)).then((response) => {
-      if (response.type === 'logout/fulfilled') {
-        navigate = ('/')
+      if (response.type === 'Login/fulfilled') {
+        navigate('/');
       }
     });
     idChangeHandler('');

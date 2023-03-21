@@ -19,6 +19,7 @@
 import { createAsyncThunk, createSlice, isRejectedWithValue } from '@reduxjs/toolkit';
 import api from '../../axios/api';
 import axios from 'axios';
+import { setCookie } from '../../auth/Cookie';
 
 const initialState = {
   users: [
@@ -35,9 +36,11 @@ const initialState = {
 
 
 export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
+  console.log('payload', payload);
   try {
     const response = await api.post('/api/auth/login', payload);
-    return thunkAPI.fulfillWithValue(response.data);
+    setCookie('token', response.headers.authorization);
+    return thunkAPI.fulfillWithValue(response);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -66,7 +69,6 @@ const loginSlice = createSlice({
     [__login.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      // console.log(action);
     },
   },
 });

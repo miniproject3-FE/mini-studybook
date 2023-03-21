@@ -20,7 +20,7 @@ const StyledLabel = styled.label`
 `;
 
 const sizes = {
-  large: { width: '20rem', height: '2.5rem', fontSize: '1.5rem' },
+  large: { width: '29rem', height: 'rem', fontSize: '1.2rem' },
   medium: { width: '17rem', height: '2rem', fontSize: '1.25rem' },
   small: { width: '12rem', height: '1.5rem', fontSize: '1rem' },
   board: {

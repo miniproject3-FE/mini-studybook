@@ -6,6 +6,7 @@
  */
 
 import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../../components/Button';
@@ -13,6 +14,7 @@ import FormInput from '../../components/FormLabelInput';
 import LabelTextArea from '../../components/LabelTextarea/LabelTextArea';
 import useInput from '../../hooks/useInput';
 import { __boardModify, __boardWriting } from '../../redux/modules/boardSlice';
+import { setCookie } from '../../auth/Cookie';
 
 function Board() {
   const [title, setTitle] = useInput();
@@ -28,7 +30,10 @@ function Board() {
       content: body,
     };
 
-    isSave ? dispatch(__boardWriting(paylaod)) : dispatch(__boardModify(paylaod));
+    console.log('paylaod', paylaod);
+    dispatch(__boardWriting(paylaod));
+
+    //dispatch(__boardModify(paylaod));
     setSave(!isSave);
   };
 

@@ -5,6 +5,7 @@
  */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 import api from '../../axios/api';
 import axios from 'axios';
 
@@ -28,9 +29,9 @@ export const __getBoards = createAsyncThunk(
   'GET_BOARDS', 
   async (payload, thunkAPI) => {
   try {
-    const response = await axios.get('http://13.125.185.202:8080/api/post');
-    // console.log('get response.data->', response.data);
-    return thunkAPI.fulfillWithValue(response.data);
+    console.log('get response.data->', data);
+    const { data } = await api.get('/api/post');
+    return thunkAPI.fulfillWithValue(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -42,6 +43,7 @@ export const __getBoard = createAsyncThunk(
   initialState,
   async (payload, thunkAPI) => {
     try {
+      console.log('__getBoard');
       const response = await api.get(`/api/post/${payload}`);
       return thunkAPI.fulfillWithValue(response);
     } catch (error) {
@@ -55,9 +57,11 @@ export const __boardWriting = createAsyncThunk(
   'BOARD_WRITING',
   async (payload, thunkAPI) => {
     try {
-      const response = await api.post('./api/post', payload);
+      const response = await api.post('./api/post', __boardWriting);
+      console.log('response', response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
+      console.log('error', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -68,7 +72,12 @@ export const __boardModify = createAsyncThunk(
   'BOARD_MODIFY',
   async (payload, thunkAPI) => {
     try {
-      const response = await api.put(`./api/post/${payload.id}`);
+      const newContents = {
+        title: payload.title,
+        content: payload.content,
+        token: payload.token,
+      };
+      const response = await api.post(`./api/post/1`, newContents);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -89,19 +98,16 @@ export const __boardDelete = createAsyncThunk(
   }
 );
 
-export const __boardLike = createAsyncThunk(
-  'BOARD_LIKE',
-  initialState,
-  async (payload, thunkAPI) => {
-    try {
-      const response = await api.post(`/api/post/${payload}`);
-      return thunkAPI.fulfillWithValue(response.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const __boardLike = createAsyncThunk('BOARD_LIKE', async (payload, thunkAPI) => {
+  try {
+    console.log('test', payload);
+    const response = await api.post(`/api/post/${payload}`);
+    return thunkAPI.fulfillWithValue(response.data);
+  } catch (error) {
+    console.log(error);
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
-
+});
 
 // 게시글 Slice
 const boardSlice = createSlice({
