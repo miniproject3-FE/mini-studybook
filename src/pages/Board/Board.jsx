@@ -14,15 +14,45 @@ import LabelTextArea from '../../components/LabelTextarea/LabelTextArea';
 import useInput from '../../hooks/useInput';
 import { __boardModify, __boardWriting } from '../../redux/modules/boardSlice';
 import { useNavigate } from 'react-router-dom';
+import {
+  StyledButtonBox,
+  StyledWrap,
+  StyledBoardBlock,
+  StyledImageBlock,
+  StyledBodyForm,
+  StyledContainer,
+  StyledInner,
+  StyledImage,
+} from './styles';
+
+import DragBox from '../../components/DragDrop/DragBox';
 
 function Board() {
   const [title, setTitle] = useInput();
   const [body, setBody] = useInput();
-  const dispatch = useDispatch();
 
+  const [image, setImage] = useState({
+    image_file: '',
+    preview_URL: '',
+  });
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handlerSubmit = (e) => {
     e.preventDefault();
+
+    if (image.image_file) {
+      const formData = new FormData();
+      formData.append('file', image.image_file);
+      //await axios.post('/api/image/upload', formData);
+      alert('서버에 등록이 완료되었습니다!');
+      setImage({
+        image_file: '',
+        preview_URL: 'img/default_image.png',
+      });
+    } else {
+      alert('사진을 등록하세요!');
+    }
 
     const paylaod = {
       title,
@@ -36,11 +66,13 @@ function Board() {
     });
   };
 
+  console.log(image);
+
   return (
     <StyledWrap>
       <StyledBoardBlock>
         <StyledImageBlock>
-          <StyledPlus>+</StyledPlus>
+          {<DragBox image={image} setImage={setImage} />}
         </StyledImageBlock>
         <StyledBodyForm onSubmit={handlerSubmit}>
           <FormInput
@@ -50,12 +82,14 @@ function Board() {
             label="제목"
             size="board"
             disabled={true}
+            placeholder="제목 입력..."
           ></FormInput>
           <LabelTextArea
             value={body}
             onChange={setBody}
             id="boardTextarea"
             label="내용"
+            placeholder="내용 입력..."
           />
           <StyledButtonBox>
             <Button size="medium" value="저장하기" />
@@ -65,57 +99,5 @@ function Board() {
     </StyledWrap>
   );
 }
-
-const StyledButtonBox = styled.div`
-  display: flex;
-  justify-content: right;
-`;
-
-const StyledWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-`;
-
-const StyledBoardBlock = styled.div`
-  width: 800px;
-  height: 1100px;
-  border: 1px solid green;
-`;
-
-const StyledPlus = styled.span`
-  font-size: 110px;
-  font-weight: 700;
-`;
-
-const StyledImageBlock = styled.div`
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-`;
-
-const StyledBodyForm = styled.form`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-`;
-
-const StyledTitleBox = styled.div`
-  width: 100%;
-  height: 2.5rem;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-`;
-
-const StyledLabel = styled.label`
-  font-size: 30px;
-  font-weight: 700;
-`;
 
 export default Board;
