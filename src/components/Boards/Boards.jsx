@@ -8,6 +8,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { __getBoards } from '../../redux/modules/boardSlice';
 import Card from '../Card';
+import { BoardContainer } from './styles';
 
 function Boards() {
   const dispatch = useDispatch();
@@ -17,12 +18,10 @@ function Boards() {
     dispatch(__getBoards());
   }, [dispatch]);
   
-  console.log('get boards->', boards)
-  
   return (
-    <section>
-      { boards !== undefined? boards?.map((board) => <Card key={board.id} board={board} /> ): null}
-    </section>
+    <BoardContainer>
+      { boards?.map((board) => <Card key={board.id} board={board} /> ) }
+    </BoardContainer>
   );
 }
 

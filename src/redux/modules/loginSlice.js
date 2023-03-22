@@ -38,7 +38,7 @@ export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
     setCookie('token', response.headers.authorization);
     return thunkAPI.fulfillWithValue(response);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response);
   }
 });
 
@@ -57,6 +57,7 @@ const loginSlice = createSlice({
     [__login.rejected]: (state, action) => {
       state.isLoading = false;
       state.isError = true;
+      alert(action.payload.data.msg)
     },
   },
 });

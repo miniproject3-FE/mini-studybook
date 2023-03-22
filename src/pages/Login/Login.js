@@ -30,9 +30,10 @@ function Login() {
     dispatch(__login(user)).then((response) => {
       if (response.type === 'Login/fulfilled') {
         navigate('/');
-      } else {
-        alert('아이디 혹은 비밀번호가 맞지 않습니다.');
-      }
+      } 
+      // else {
+      //   alert('아이디 혹은 비밀번호가 맞지 않습니다.');
+      // }
     });
     idChangeHandler('');
     passwordChangeHandler('');

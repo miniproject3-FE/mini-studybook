@@ -79,8 +79,6 @@ function Signup() {
         console.log(response);
         if (response.type === 'signup/fulfilled') {
           navigate('/login');
-        } else {
-          alert('이미 가입된 아이디입니다.');
         }
       });
     }

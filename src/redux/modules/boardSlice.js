@@ -37,7 +37,6 @@ const initialState = {
 export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
   try {
     const response = await api.get('/api/post');
-    console.log('get response.data->', response);
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -80,6 +79,7 @@ export const __boardModify = createAsyncThunk(
         content: payload.content,
         token: payload.token,
       };
+      console.log()
       const response = await api.post(`./api/post/1`, newContents);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
@@ -165,7 +165,6 @@ const boardSlice = createSlice({
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.getDatas = action.payload;
-      console.log('state?', state.getDatas); // [{}, {}, {}]
     },
     [__getBoards.rejected]: (state, action) => {
       state.isLoading = false;

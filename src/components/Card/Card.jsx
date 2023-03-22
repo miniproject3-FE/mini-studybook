@@ -9,31 +9,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../auth/Cookie";
-import { StyledCardBox, StyledCard, Title, Contents, Like, Image } from './styles'
-import logo from '../../assets/images/logo2.png'
+import { StyledCardBox, StyledCard, Title, Image, Like, Text } from './styles'
+import logo from '../../assets/images/logo.png'
+
 
 function Card(board) {
     
     const navigate = useNavigate();
-    console.log('board에 들어왔는지', board.board.islike)
+    const card = board.board
 
-    return(
+    return (
         <StyledCardBox>
-            <StyledCard
-            onClick={()=> {
-                navigate(`/detail/${board.board.id}`)
-            }}
-            >
-                <Image src={logo} alt="logo" />
-                <Title>{board.board.title}</Title>
-                <Contents></Contents>
-            </StyledCard>
+            <StyledCard onClick={() => { navigate(`/detail/${card.id}`) }}>
+                <Image src={logo} alt={logo} />
+                <Title>{card.title}</Title>
                 {
-                !getCookie('token')? <Like></Like>
-                : board.board.islike? <Like>❤️</Like> 
-                : <Like>🤍</Like>
+                    !getCookie('token') ? 
+                    <Like> {card.title} </Like>
+                    : board.board.islike ? 
+                    <Like> 
+                        <Text>
+                            {card.title}
+                        </Text>
+                        ❤️{card.likecount} 
+                        </Like>
+                    : <Like> {card.title}🤍{card.likecount} </Like>
                 }
+            </StyledCard>
         </StyledCardBox>
+
     )
 };
 

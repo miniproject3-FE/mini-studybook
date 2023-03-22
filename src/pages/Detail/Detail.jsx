@@ -43,9 +43,9 @@ function Detail() {
       <StyledContainer>
         <StyledImageBox>이미지</StyledImageBox>
         <StyledContentBox>
-          <StyledAutherBlock>{data.loginid}</StyledAutherBlock>
-          <StyledTitleBlock>{data.title}</StyledTitleBlock>
-          <StyledContentBlock>asda{data.content}</StyledContentBlock>
+          <StyledAutherBlock>{data?.loginid}</StyledAutherBlock>
+          <StyledTitleBlock>{data?.title}</StyledTitleBlock>
+          <StyledContentBlock>asda{data?.content}</StyledContentBlock>
           <StyledLikeBlock>
             <StyledLikeBox onClick={handlerClickLike}>좋아요</StyledLikeBox>
             <StyledButton onClick={handlerClickModify}>수정</StyledButton>

@@ -6,48 +6,63 @@
 
 import styled from "styled-components"
 
+
 const StyledCardBox = styled.div`
-    width: 250px;
-    height: 500px;
-    border-radius: 10px;
-    margin: 20px;
-    gap: 20px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    
+    display: flex;
+    flex-direction: column;
 `
+
 const StyledCard = styled.div`
-    
-    
+    width: 300px;
+    border-radius: 5px;
+    margin: 0px auto;
+    position: relative;
+    display: block;
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `
 
 const Image =  styled.img`
-    width: 250px;
-    height: 250px;
-    border-top-right-radius: 10px;;
-    border-top-left-radius: 10px;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 `
 
 const Title = styled.div`
-    font-size: 20px;
-    width: 250px;
-    height: 60px;
-    text-align: center;
-    line-height: 60px;
-`
-const Contents = styled.div`
     font-size: 15px;
-    width: 250px;
-    height: 140px;
+    width: 300px;
+    height: 300px;
     text-align: center;
-    overflow: scroll;
+    line-height: 300px;
+    /* justify-content: space-between; */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: rgba(255,255,255,0);
+
+    &:hover {
+        display: block;
+        background-color : black;
+        color: white;
+        opacity: 0.65;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
 `
+
 const Like = styled.div`
     height: 25px;
-    font-size: 30px;
     text-align: right;
     display: block;
     align-items: flex-end;
     margin: 10px 10px 10px 0;
 `
 
-export { StyledCardBox, StyledCard, Title, Contents, Like, Image }
+const Text = styled.span`
+    font-size: 16px;
+`
+
+export { StyledCardBox, StyledCard, Title, Image, Like, Text }

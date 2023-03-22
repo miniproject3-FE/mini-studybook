@@ -7,7 +7,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getCookie } from '../../auth/Cookie';
+import { getCookie, removeCookie } from '../../auth/Cookie';
 import { __logout } from '../../redux/modules/loginSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
 
@@ -18,7 +18,8 @@ function Header() {
   const navigate = useNavigate();
 
   const handlerClickLogout = () => {
-    
+    setLogout(true)
+    removeCookie('token')
   };
 
   const cookie = getCookie('token');
@@ -34,18 +35,18 @@ function Header() {
     <StyledHeader>
       <StyledUl>
         {cookie !== undefined ? (
-          <StyledLi onClick={handlerClickLogout}>Logout</StyledLi>
+          <StyledLi onClick={handlerClickLogout}
+          >Logout
+          </StyledLi>
         ) : (
-          <StyledLi
-            onClick={() => {
+          <StyledLi onClick={() => {
               navigate('/login');
             }}
           >
             Login
           </StyledLi>
         )}
-        <StyledLi
-          onClick={() => {
+        <StyledLi onClick={() => {
             navigate('/signup');
           }}
         >

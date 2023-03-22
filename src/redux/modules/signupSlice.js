@@ -8,7 +8,6 @@
  */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import api from '../../axios/api';
 
 const initialState = {
@@ -38,7 +37,7 @@ export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => 
 
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response);
   }
 });
 
@@ -58,6 +57,7 @@ export const signupSlice = createSlice({
     [__signup.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      alert(action.payload.data.msg)
     },
     [__getData.pending]: (state, action) => {
       state.isLoading = true;
