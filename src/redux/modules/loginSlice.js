@@ -16,9 +16,8 @@
  * 작성 날짜 : 2023.03.21
  */
 
-import { createAsyncThunk, createSlice, isRejectedWithValue } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from '../../axios/api';
-import axios from 'axios';
 import { setCookie } from '../../auth/Cookie';
 
 const initialState = {
@@ -42,14 +41,6 @@ export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => {
-//   try {
-//     const response = await api.get('/api/auth/logout');
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
 
 const loginSlice = createSlice({
   name: 'login',

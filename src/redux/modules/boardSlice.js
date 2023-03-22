@@ -19,17 +19,26 @@ const initialState = {
       title: 'title06',
     },
   ],
+  getDatas: [
+    {
+      id: '',
+      title: '',
+      islike: false,
+      loginid: '',
+    }
+  ],
   error: null,
   isLoading: false,
   isSuccess: false,
 };
 
+
 // 전체 게시글 조회
 export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
   try {
-    console.log('get response.data->', data);
-    const { data } = await api.get('/api/post');
-    return thunkAPI.fulfillWithValue(data);
+    const response = await api.get('/api/post');
+    console.log('get response.data->', response);
+    return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -155,8 +164,8 @@ const boardSlice = createSlice({
     },
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload.data;
-      console.log('state?', state.data); // [{}, {}, {}]
+      state.getDatas = action.payload;
+      console.log('state?', state.getDatas); // [{}, {}, {}]
     },
     [__getBoards.rejected]: (state, action) => {
       state.isLoading = false;

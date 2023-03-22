@@ -4,30 +4,24 @@
  * 날짜: 2023-03-21
  */
 
-import React, { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { __getBoards } from '../../redux/modules/boardSlice';
-
 import Card from '../Card';
 
 function Boards() {
   const dispatch = useDispatch();
-  const boards = useSelector((state) => state.data);
-
-  const [test, setTest] = useState('');
-
-  console.log('boards', boards);
+  const boards = useSelector((state) => state.board.getDatas.data);
 
   useEffect(() => {
-    console.log('useEffect');
     dispatch(__getBoards());
-  }, []);
-
+  }, [dispatch]);
+  
+  console.log('get boards->', boards)
+  
   return (
     <section>
-      <Card />
-      {boards && boards.map((board) => <Card key={board.id} board={board} />)}
+      { boards !== undefined? boards?.map((board) => <Card key={board.id} board={board} /> ): null}
     </section>
   );
 }

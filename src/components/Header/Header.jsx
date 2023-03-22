@@ -4,7 +4,7 @@
  * 코드 작성 날짜 : 2023-03-17
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../auth/Cookie';
