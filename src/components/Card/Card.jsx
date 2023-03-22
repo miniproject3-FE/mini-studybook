@@ -33,11 +33,11 @@ function Card(board) {
                     : board.board.islike ? 
                     <Like>
                         <Text> [{card.title}] </Text>
-                        <Text> ❤️{card.likecount} </Text>
+                        <Text> ❤️{card.totalCount} </Text>
                     </Like>
                     : <Like>
                         <Text> [{card.title}] </Text>
-                        <Text> 🤍{card.likecount} </Text>
+                        <Text> 🤍{card.totalCount} </Text>
                     </Like>
                 }
             </StyledCard>

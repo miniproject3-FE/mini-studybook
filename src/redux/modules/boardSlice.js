@@ -14,7 +14,7 @@ const initialState = {
       createdAt: '2023-03-20 PM 8:28',
       id: 1,
       islike: false,
-      likecount: 1,
+      totalCount: 0,
       loginid: 'id0222222',
       title: 'title06',
     },
@@ -101,11 +101,12 @@ export const __boardDelete = createAsyncThunk(
   }
 );
 
+// 게시글 좋아요
 export const __boardLike = createAsyncThunk('BOARD_LIKE', async (payload, thunkAPI) => {
   try {
     console.log('test', payload);
     const response = await api.post(`/api/post/${payload}`);
-    return thunkAPI.fulfillWithValue(response.data);
+    return thunkAPI.fulfillWithValue(response.data.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -195,8 +196,8 @@ const boardSlice = createSlice({
     [__boardLike.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      console.log(action)
-      // state.data = action.payload;
+      state.data.data = {...state.data.data, islike: action.payload.islike, totalCount: +action.payload.totalCount }
+      console.log('state.data--->>>', state.data.data)
     },
     [__boardLike.rejected]: (state, action) => {
       state.isLoading = false;

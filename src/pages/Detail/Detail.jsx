@@ -9,17 +9,17 @@
  * 작성 날짜: 2023-03-22
  */
 
-import React, { useEffect, useRef} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { __boardLike, __boardModify, __getBoard, __boardDelete } from '../../redux/modules/boardSlice';
 
+
 function Detail() {
-  //const data = useSelector((state) => state.data);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const getServer = useRef(false);
 
   //도메인에서 현재페에지 id 값 가져오기
   const { id } = useParams();
@@ -27,6 +27,7 @@ function Detail() {
 
   const handlerClickLike = () => {
     dispatch(__boardLike(id));
+    dispatch(__getBoard(id));
   };
 
   const handlerClickModify = () => {
@@ -45,11 +46,11 @@ function Detail() {
   }
 
   useEffect(() => {
-    console.log('호출될때마다')
+    console.log('useEffect 호출될때마다 알려죠~')
     dispatch(__getBoard(id));
   }, []);
-
   console.log('selector', data);
+
   return (
     <StyledWrap>
       <StyledContainer>
@@ -68,8 +69,8 @@ function Detail() {
           <StyledLikeBlock>
             {
               !data?.islike
-              ? <StyledLikeBox onClick={handlerClickLike}>🤍 {data?.likecount}</StyledLikeBox>
-              : <StyledLikeBox onClick={handlerClickLike}>❤️ {data?.likecount}</StyledLikeBox>
+              ? <StyledLikeBox onClick={handlerClickLike}>🤍 {data?.totalCount}</StyledLikeBox>
+              : <StyledLikeBox onClick={handlerClickLike}>❤️ {data?.totalCount}</StyledLikeBox>
             }
             <DetailButtons>
               <StyledButton onClick={handlerClickMainNav}>완료</StyledButton>
