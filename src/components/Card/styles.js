@@ -56,12 +56,13 @@ const Title = styled.div`
 const Like = styled.div`
     height: 25px;
     text-align: right;
-    display: block;
-    align-items: flex-end;
-    margin: 10px 10px 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
 `
 
-const Text = styled.span`
+const Text = styled.div`   
     font-size: 16px;
 `
 

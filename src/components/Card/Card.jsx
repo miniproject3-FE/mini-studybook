@@ -10,7 +10,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../auth/Cookie";
 import { StyledCardBox, StyledCard, Title, Image, Like, Text } from './styles'
-import logo from '../../assets/images/logo.png'
+import logo from '../../assets/images/logo2.png'
 
 
 function Card(board) {
@@ -25,15 +25,18 @@ function Card(board) {
                 <Title>{card.title}</Title>
                 {
                     !getCookie('token') ? 
-                    <Like> {card.title} </Like>
+                    <Like>
+                        <Text> [{card.title}] </Text>
+                    </Like>
                     : board.board.islike ? 
-                    <Like> 
-                        <Text>
-                            {card.title}
-                        </Text>
-                        ❤️{card.likecount} 
-                        </Like>
-                    : <Like> {card.title}🤍{card.likecount} </Like>
+                    <Like>
+                        <Text> [{card.title}] </Text>
+                        <Text> ❤️{card.likecount} </Text>
+                    </Like>
+                    : <Like>
+                        <Text> [{card.title}] </Text>
+                        <Text> 🤍{card.likecount} </Text>
+                    </Like>
                 }
             </StyledCard>
         </StyledCardBox>

@@ -34,11 +34,18 @@ function Header() {
   return (
     <StyledHeader>
       <StyledUl>
+        <StyledLi onClick={() => {
+          navigate('/board');
+        }}
+        >
+          Write
+        </StyledLi>
         {cookie !== undefined ? (
           <StyledLi onClick={handlerClickLogout}
           >Logout
           </StyledLi>
         ) : (
+          
           <StyledLi onClick={() => {
               navigate('/login');
             }}
