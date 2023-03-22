@@ -12,24 +12,17 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import './DragBox.css';
+import { StyledContainer, StyledLabel, StyledInner, StyledImage } from './styles';
 
-function DragBox() {
+function DragBox(props) {
   const dragRef = useRef(null);
-
-  const [imageSrc, setImageSrc] = useState();
-
-  const [image, setImage] = useState({
-    image_file: '',
-    preview_URL: '',
-  });
 
   const saveImage = (file) => {
     if (file) {
       //새로운 이미지를 올리면 createObjectURL()을 통해 생성한 기존 URL을 폐기
-      URL.revokeObjectURL(image.preview_URL);
+      URL.revokeObjectURL(props.image.preview_URL);
       const preview_URL = URL.createObjectURL(file);
-      setImage(() => ({
+      props.setImage(() => ({
         image_file: file,
         preview_URL: preview_URL,
       }));
@@ -38,8 +31,8 @@ function DragBox() {
 
   const deleteImage = () => {
     //createObjectURL()을 통해 생성한 기존 URL을 폐기
-    URL.revokeObjectURL(image.preview_URL);
-    setImage({
+    URL.revokeObjectURL(props.image.preview_URL);
+    props.setImage({
       image_file: '',
       preview_URL: '',
     });
@@ -65,32 +58,14 @@ function DragBox() {
 
   useEffect(() => {
     //컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
-
     return () => {
-      URL.revokeObjectURL(image.preview_URL);
+      URL.revokeObjectURL(props.image.preview_URL);
     };
   }, []);
 
-  const sendImageToServer = async () => {
-    if (image.image_file) {
-      const formData = new FormData();
-      formData.append('file', image.image_file);
-      //await axios.post('/api/image/upload', formData);
-      alert('서버에 등록이 완료되었습니다!');
-      setImage({
-        image_file: '',
-        preview_URL: 'img/default_image.png',
-      });
-    } else {
-      alert('사진을 등록하세요!');
-    }
-  };
-
-  console.log(image);
   return (
-    <main className="container">
-      <label
-        className="label"
+    <StyledContainer>
+      <StyledLabel
         id="label"
         htmlFor="fileUpload"
         onDrop={handleDrop}
@@ -98,13 +73,16 @@ function DragBox() {
           return dragFunction(event, 'over');
         }}
       >
-        <div className="inner" id="inner">
-          드래그하거나 클릭해서 업로드
-        </div>
-      </label>
+        {props.image.image_file ? (
+          <StyledInner id="inner">
+            <StyledImage src={props.image.preview_URL} />
+          </StyledInner>
+        ) : (
+          <StyledInner id="inner">드래그하거나 클릭해서 업로드</StyledInner>
+        )}
+      </StyledLabel>
       <input
         id="fileUpload"
-        className="input"
         accept="image/*"
         type="file"
         required
@@ -114,16 +92,7 @@ function DragBox() {
         onChange={handleChange}
         onClick={(e) => (e.target.value = null)}
       />
-      <p className="preview-title">preview</p>
-      <div className="preview" id="preview">
-        {image.image_file && (
-          <>
-            <img src={image.preview_URL} />
-          </>
-        )}
-      </div>
-    </main>
+    </StyledContainer>
   );
 }
-
 export default DragBox;
