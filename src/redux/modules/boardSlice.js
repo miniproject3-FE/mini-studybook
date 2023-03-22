@@ -48,7 +48,7 @@ export const __getBoard = createAsyncThunk('GET_BOARD', async (payload, thunkAPI
   try {
     console.log('__getBoard');
     const response = await api.get(`/api/post/${payload}`);
-    return thunkAPI.fulfillWithValue(response);
+    return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -107,7 +107,6 @@ export const __boardLike = createAsyncThunk('BOARD_LIKE', async (payload, thunkA
     const response = await api.post(`/api/post/${payload}`);
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
-    console.log(error);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -118,6 +117,7 @@ const boardSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    // 게시글 작성 reducer
     [__boardWriting.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -132,6 +132,7 @@ const boardSlice = createSlice({
       state.error = action;
     },
 
+    // 게시글 수정 reducer
     [__boardModify.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -146,6 +147,7 @@ const boardSlice = createSlice({
       state.error = action;
     },
 
+    // 게시글 삭제 reducer
     [__boardDelete.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -159,6 +161,8 @@ const boardSlice = createSlice({
       state.isError = true;
       state.error = action;
     },
+
+    // 게시글 전체조회 reducer
     [__getBoards.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -170,26 +174,29 @@ const boardSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    // 게시글 상세조회 reducer
     [__getBoard.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload.data;
-      console.log('state?', state.data); // [{}, {}, {}]
+      state.data = action.payload;
     },
     [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
 
+    // 게시글 좋아요 reducer
     [__boardLike.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__boardLike.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.board = action;
+      console.log(action)
+      // state.data = action.payload;
     },
     [__boardLike.rejected]: (state, action) => {
       state.isLoading = false;

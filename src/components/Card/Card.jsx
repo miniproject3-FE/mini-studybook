@@ -24,7 +24,7 @@ function Card(board) {
         <StyledCardBox>
             <StyledCard onClick={() => { navigate(`/detail/${card.id}`) }}>
                 <Image src={logo} alt={logo} />
-                <Title>{card.title}</Title>
+                <Title>{card.loginid}님의 카드</Title>
                 {
                     !getCookie('token') ? 
                     <Like>

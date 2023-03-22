@@ -49,7 +49,7 @@ const Title = styled.div`
         color: white;
         opacity: 0.65;
         cursor: pointer;
-        font-size: 25px;
+        font-size: 20px;
     }
 
 `

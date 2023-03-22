@@ -7,6 +7,10 @@
  * 전달 후 로그인 성공시 페이지를 메인으로 이동한다.
  *
  * 작성 날짜 :2023.03.18
+ * 
+ * 수정자: 김은영
+ * 목적: 로고 클릭시 홈으로 이동 호버시 커서모양 변경
+ * 수정 날짜: 2023-03-23
  *
  */
 
@@ -87,7 +91,7 @@ function Signup() {
   return (
     <StyledWrap>
       <StyledHeader>
-        <LogoBox />
+        <LogoBox onClick={()=> navigate('/')} />
       </StyledHeader>
       <StyledBody>
         <StyledForm>

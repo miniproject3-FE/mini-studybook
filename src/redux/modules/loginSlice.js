@@ -38,7 +38,7 @@ export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
   try {
     const response = await api.post('/api/auth/login', payload);
     setCookie('token', response.headers.authorization);
-    return thunkAPI.fulfillWithValue(response);
+    return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response);
   }

@@ -2,6 +2,10 @@
  * 작성자: 김은영
  * 목적: 로그인 기능구현
  * 작성 날짜: 2023-03-18
+ * 
+ * 수정자: 김은영
+ * 목적: 로고 클릭시 홈 화면으로 이동 및 호버시 커서모양 변경
+ * 수정 날찌: 2023-03-23
  */
 
 import React from 'react';
@@ -32,9 +36,6 @@ function Login() {
       if (response.type === 'Login/fulfilled') {
         navigate('/');
       } 
-      // else {
-      //   alert('아이디 혹은 비밀번호가 맞지 않습니다.');
-      // }
     });
     idChangeHandler('');
     passwordChangeHandler('');

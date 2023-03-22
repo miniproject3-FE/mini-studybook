@@ -15,6 +15,7 @@ function Boards() {
   const boards = useSelector((state) => state.board.getDatas.data);
 
   useEffect(() => {
+    console.log('navi시에 뜨는가?')
     dispatch(__getBoards());
   }, [dispatch]);
   

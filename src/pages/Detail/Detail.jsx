@@ -3,14 +3,17 @@
  * 목적 : 게시글 작성, 수정
  * 작성 날짜 : 2023.03.21
  *
+ * 
+ * 수정자: 김은영
+ * 목적: 전반적인 스타일 수정, 수정/삭제버튼 기능 개발 및 연결, 좋아요 기능 수정
+ * 작성 날짜: 2023-03-22
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../../components/Button';
-import { __boardLike, __boardModify, __getBoard } from '../../redux/modules/boardSlice';
+import { __boardLike, __boardModify, __getBoard, __boardDelete } from '../../redux/modules/boardSlice';
 
 function Detail() {
   //const data = useSelector((state) => state.data);
@@ -22,19 +25,28 @@ function Detail() {
   const { id } = useParams();
   const { isLoading, isError, data } = useSelector((state) => state.board.data);
 
-  const handlerClickLike = (e) => {
-    e.preventDefault();
+  const handlerClickLike = () => {
     dispatch(__boardLike(id));
   };
 
-  const handlerClickModify = (e) => {
-    e.preventDefault();
+  const handlerClickModify = () => {
     navigate(`/board/${id}`);
   };
+
+  const handlerClickDelete = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(__boardDelete(id));
+      navigate('/');
+    }
+  };
+
+  const handlerClickMainNav = () => {
+    navigate('/');
+  }
+
   useEffect(() => {
-    console.log('getboard');
+    console.log('호출될때마다')
     dispatch(__getBoard(id));
-    console.log('datatttt', data);
   }, []);
 
   console.log('selector', data);
@@ -43,12 +55,27 @@ function Detail() {
       <StyledContainer>
         <StyledImageBox>이미지</StyledImageBox>
         <StyledContentBox>
-          <StyledAutherBlock>{data?.loginid}</StyledAutherBlock>
-          <StyledTitleBlock>{data?.title}</StyledTitleBlock>
-          <StyledContentBlock>asda{data?.content}</StyledContentBlock>
+          <StyledTitleBlock>[ {data?.title} ]</StyledTitleBlock>
+          <StyledContentBlock>
+            <StyledContent> {data?.content} </StyledContent>
+          </StyledContentBlock>
+          <StyledAutherBlock>
+           <StyledAuther> {data?.loginid} </StyledAuther>
+          </StyledAutherBlock>
+          <StyledTimeBlock>
+            <StyledTime> {data?.createdAt} </StyledTime>
+          </StyledTimeBlock>
           <StyledLikeBlock>
-            <StyledLikeBox onClick={handlerClickLike}>좋아요</StyledLikeBox>
-            <StyledButton onClick={handlerClickModify}>수정</StyledButton>
+            {
+              !data?.islike
+              ? <StyledLikeBox onClick={handlerClickLike}>🤍 {data?.likecount}</StyledLikeBox>
+              : <StyledLikeBox onClick={handlerClickLike}>❤️ {data?.likecount}</StyledLikeBox>
+            }
+            <DetailButtons>
+              <StyledButton onClick={handlerClickMainNav}>완료</StyledButton>
+              <StyledButton onClick={handlerClickModify}>수정</StyledButton>
+              <StyledButton onClick={handlerClickDelete}>삭제</StyledButton>
+            </DetailButtons>
           </StyledLikeBlock>
         </StyledContentBox>
       </StyledContainer>
@@ -56,27 +83,37 @@ function Detail() {
   );
 }
 
+const DetailButtons = styled.div`
+  display: flex;
+  margin-right: 18px;
+`
+
 const StyledButton = styled.div`
   height: 30px;
   width: 50px;
-  background-color: blue;
-  margin-right: 20px;
-  color: white;
+  color: black;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
+  &:hover {
+    color: #cbc9c9;
+  }
 `;
 
 const StyledLikeBox = styled.div`
-  width: 30px;
+  width: 60px;
   height: 30px;
-  background: red;
+  /* background: red; */
   margin-left: 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 `;
 
 const StyledLikeBlock = styled.div`
@@ -85,17 +122,54 @@ const StyledLikeBlock = styled.div`
   height: 5vh;
   justify-content: space-between;
   align-items: center;
-  background-color: #3b1e1e;
+  /* background-color: #3b1e1e; */
 `;
+
+const StyledTimeBlock = styled.div`
+  display: flex;
+  width: inherit;
+  height: 5vh;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 0.2px solid gray;
+
+  /* border: 0.2px solid orange; */
+`;
+
+const StyledTime = styled.div`
+  margin-right: 30px;
+`
+
+const StyledAutherBlock = styled.div`
+  display: flex;
+  width: inherit;
+  height: 5vh;
+  align-items: center;
+  justify-content: flex-end;
+
+  /* background-color: #4f3c3c; */
+`;
+
+const StyledAuther = styled.div`
+  margin-right: 30px;
+`
 
 const StyledContentBlock = styled.div`
   display: flex;
   width: inherit;
-  height: 45vh;
-  justify-content: center;
-  align-items: center;
-  background-color: #781a1a;
+  height: 40vh;
+  justify-content: flex-start;
+
+  /* border-bottom: 0.2px solid gray; */
+  /* background-color: #781a1a; */
 `;
+
+const StyledContent = styled.div`
+  width: inherit;
+  height: 25vh;
+  margin: 30px;
+  overflow: scroll;
+`
 
 const StyledTitleBlock = styled.div`
   display: flex;
@@ -103,26 +177,13 @@ const StyledTitleBlock = styled.div`
   height: 5vh;
   justify-content: center;
   align-items: center;
-  background-color: #8c3e3e;
-`;
+  font-size: 20px;
 
-const StyledAutherBlock = styled.div`
-  display: flex;
-  width: inherit;
-  height: 5vh;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #4f3c3c;
-`;
-
-const StyledContainer = styled.div`
-  background: lightgray;
-  display: flex;
+  /* background-color: #8c3e3e; */
 `;
 
 const StyledImageBox = styled.div`
-  width: 50vw;
+  width: 30vw;
   height: 60vh;
   background: gray;
 
@@ -131,10 +192,18 @@ const StyledImageBox = styled.div`
   align-items: center;
 `;
 
+const StyledContainer = styled.div`
+  /* background: lightgray; */
+  border: 0.2px solid gray;
+  border-radius: 2px;
+  display: flex;
+`;
+
 const StyledContentBox = styled.div`
   width: 30vw;
   height: 60vh;
-  background: #4c4c4c;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  /* background: #4c4c4c; */
 `;
 
 const StyledWrap = styled.div`
