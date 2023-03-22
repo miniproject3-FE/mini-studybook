@@ -115,7 +115,13 @@ function DragBox() {
         onClick={(e) => (e.target.value = null)}
       />
       <p className="preview-title">preview</p>
-      <div className="preview" id="preview"></div>
+      <div className="preview" id="preview">
+        {image.image_file && (
+          <>
+            <img src={image.preview_URL} />
+          </>
+        )}
+      </div>
     </main>
   );
 }
