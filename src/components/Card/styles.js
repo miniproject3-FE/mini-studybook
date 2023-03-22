@@ -36,11 +36,12 @@ const Title = styled.div`
     height: 300px;
     text-align: center;
     line-height: 300px;
-    /* justify-content: space-between; */
     position: absolute;
     top: 0px;
     left: 0px;
     color: rgba(255,255,255,0);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 
     &:hover {
         display: block;

@@ -2,7 +2,9 @@
  * 작성자: 김은영
  * 목적: Posts에 붙일 Card 생성
  * 날짜: 2023-03-21
- * 수정: styles 분리
+ * 
+ * 수정자: 김은영
+ * 목적: styles 분리 및 표현 내역 수정
  * 수정 날짜: 2023-03-22
  */
 
@@ -40,7 +42,6 @@ function Card(board) {
                 }
             </StyledCard>
         </StyledCardBox>
-
     )
 };
 

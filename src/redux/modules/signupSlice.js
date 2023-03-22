@@ -1,10 +1,11 @@
 /**
- *
  * 작성자 : 박찬우
  * 목적:
  * thunk를 이용해서 서버에 비동기 통신을 하려고 한다.
  * 서버에 회원가입에 대한 정보 전달을 목적으로 한다.
  *
+ * 수정자: 김은영
+ * 목적: reject 됐을 때 서버에서 받아온 error메세지를 띄우기 위해 수정.
  */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';

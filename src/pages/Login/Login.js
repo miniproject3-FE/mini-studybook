@@ -26,6 +26,7 @@ function Login() {
     password,
   };
 
+
   const loginOnsubmitHandler = (user) => {
     dispatch(__login(user)).then((response) => {
       if (response.type === 'Login/fulfilled') {
@@ -42,7 +43,7 @@ function Login() {
   return (
     <StyledFormContainer>
       <StyledHeader>
-        <LogoBox />
+        <LogoBox onClick={()=> {navigate('/')}} />
       </StyledHeader>
       <StyledBody>
         <StyledForm
