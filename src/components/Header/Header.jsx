@@ -17,7 +17,9 @@ function Header() {
   const [logout, setLogout] = useState(false);
   const navigate = useNavigate();
 
-  const handlerClickLogout = () => {};
+  const handlerClickLogout = () => {
+    
+  };
 
   const cookie = getCookie('token');
 
