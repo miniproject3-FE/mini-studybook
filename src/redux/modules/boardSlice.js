@@ -94,7 +94,7 @@ export const __boardDelete = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await api.delete(`/api/post/${payload}`);
-      return thunkAPI.fulfillWithValue(response.data);
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -154,7 +154,6 @@ const boardSlice = createSlice({
     [__boardDelete.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.board = action;
     },
     [__boardDelete.rejected]: (state, action) => {
       state.isLoading = false;
@@ -168,7 +167,6 @@ const boardSlice = createSlice({
     },
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log('action.payload', action.payload);
       state.getDatas = action.payload;
     },
     [__getBoards.rejected]: (state, action) => {

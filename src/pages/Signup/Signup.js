@@ -14,7 +14,7 @@
  *
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -41,6 +41,7 @@ function Signup() {
   const [pw2Info, pw2Handler, pw2Error] = useSignInfo();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [click, setClick] = useState(false);
 
   //function
   const handlerSubmit = (e) => {
@@ -52,6 +53,7 @@ function Signup() {
     emailError(emailCheck(emailInfo.value));
     usernameError(nameCheck(username.value));
     pw2Error(reconfirmPassword(pwInfo.value, pw2Info.value));
+    setClick(!click);
   };
 
   //버튼 클릭시 handlerSubmit 함수가 실행이 되는데,
@@ -86,7 +88,7 @@ function Signup() {
         }
       });
     }
-  }, [handlerSubmit]);
+  }, [click]);
 
   return (
     <StyledWrap>
