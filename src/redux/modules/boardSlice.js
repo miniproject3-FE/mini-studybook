@@ -47,11 +47,9 @@ export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkA
 // 선택 게시글 조회
 export const __getBoard = createAsyncThunk('GET_BOARD', async (payload, thunkAPI) => {
   try {
-    console.log('__getBoard');
     const response = await api.get(`/api/post/${payload}`);
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
-    console.log('error.message', error.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -62,10 +60,8 @@ export const __boardWriting = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await api.post('/api/post', payload);
-      console.log('response', response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      console.log('error', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -199,7 +195,6 @@ const boardSlice = createSlice({
         islike: action.payload.islike,
         totalCount: +action.payload.totalCount,
       };
-      console.log('state.data--->>>', state.data.data);
     },
     [__boardLike.rejected]: (state, action) => {
       state.isLoading = false;
