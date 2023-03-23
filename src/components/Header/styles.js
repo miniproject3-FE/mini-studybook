@@ -19,6 +19,7 @@ const StyledUl = styled.ul`
 const StyledLi = styled.li`
   font-size: 18px;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export { StyledHeader, StyledUl, StyledLi };

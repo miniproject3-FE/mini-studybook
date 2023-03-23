@@ -7,16 +7,16 @@
  */
 
 import React from 'react';
-import { StyledLabel, StyledInput, StyledLabelBlock } from './styles'
+import { StyledLabel, StyledInput, StyledLabelBlock } from './styles';
 
 function LabelInput(props) {
   return (
     <StyledLabelBlock>
-      <StyledLabel size={props.size} htmlFor={props.id}>
+      <StyledLabel fontsize={props.fontsize} htmlFor={props.id}>
         {props.label}
       </StyledLabel>
       <StyledInput
-        require
+        require={props.require}
         size={props.size}
         type={props.type}
         id={props.id}
@@ -29,5 +29,3 @@ function LabelInput(props) {
 }
 
 export default LabelInput;
-
-
