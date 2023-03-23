@@ -39,7 +39,7 @@ export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkA
     const response = await api.get('/api/post');
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
@@ -50,6 +50,7 @@ export const __getBoard = createAsyncThunk('GET_BOARD', async (payload, thunkAPI
     const response = await api.get(`/api/post/${payload}`);
     return thunkAPI.fulfillWithValue(response.data);
   } catch (error) {
+    console.log('error.message', error.message)
     return thunkAPI.rejectWithValue(error.message);
   }
 });
