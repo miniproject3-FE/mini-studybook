@@ -18,6 +18,7 @@ import {
   __boardModify,
   __getBoard,
   __boardDelete,
+  __getBoards,
 } from '../../redux/modules/boardSlice';
 import jwt_decode from 'jwt-decode';
 import { getCookie } from '../../auth/Cookie';
@@ -46,6 +47,7 @@ function Detail() {
   const handlerClickDelete = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       dispatch(__boardDelete(id));
+      dispatch(__getBoards());
       navigate('/main');
     }
   };
