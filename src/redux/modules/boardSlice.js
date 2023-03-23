@@ -100,7 +100,6 @@ export const __boardDelete = createAsyncThunk(
 // 게시글 좋아요
 export const __boardLike = createAsyncThunk('BOARD_LIKE', async (payload, thunkAPI) => {
   try {
-    console.log('test', payload);
     const response = await api.post(`/api/post/${payload}`);
     return thunkAPI.fulfillWithValue(response.data.data);
   } catch (error) {

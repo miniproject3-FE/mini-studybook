@@ -14,7 +14,6 @@ function Boards() {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.board.getDatas.data);
   useEffect(() => {
-    console.log('useEffect');
     dispatch(__getBoards());
   }, [dispatch]);
 
