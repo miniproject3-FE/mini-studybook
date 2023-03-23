@@ -24,7 +24,7 @@ const sizes = {
   medium: { width: '17rem', height: '2rem', fontSize: '1.25rem' },
   small: { width: '12rem', height: '1.5rem', fontSize: '1rem' },
   board: {
-    width: '100%',
+    width: '99%',
     height: '2.5rem',
     fontSize: '1.5rem',
     boxShadow: `rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,

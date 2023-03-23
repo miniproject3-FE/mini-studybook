@@ -7,6 +7,10 @@
  * 수정자: 김은영
  * 목적: 전반적인 스타일 수정, 수정/삭제버튼 기능 개발 및 연결, 좋아요 기능 수정
  * 작성 날짜: 2023-03-22
+ * 
+ * 수정자: 김은영
+ * 목적: 수정/삭제버튼 표시 조건추가
+ * 수정 날짜: 2023-03-23
  */
 
 import React, { useEffect } from 'react';
@@ -19,8 +23,6 @@ import {
   __getBoard,
   __boardDelete,
 } from '../../redux/modules/boardSlice';
-import jwt_decode from 'jwt-decode';
-import { getCookie } from '../../auth/Cookie';
 
 function Detail() {
   const dispatch = useDispatch();
@@ -29,10 +31,6 @@ function Detail() {
   //도메인에서 현재페에지 id 값 가져오기
   const { id } = useParams();
   const { isLoading, isError, data } = useSelector((state) => state.board.data);
-
-  //토큰 decode
-  const token = getCookie(['token']);
-  const loginId = jwt_decode(token).sub;
 
   const handlerClickLike = () => {
     dispatch(__boardLike(id));
@@ -57,6 +55,8 @@ function Detail() {
   useEffect(() => {
     dispatch(__getBoard(id));
   }, []);
+
+  console.log('Detail page data->', data)
 
   return (
     <StyledWrap>
@@ -85,12 +85,14 @@ function Detail() {
             )}
             <DetailButtons>
               <StyledButton onClick={handlerClickMainNav}>완료</StyledButton>
-              {loginId === data?.loginid && (
-                <>
-                  <StyledButton onClick={handlerClickModify}>수정</StyledButton>
-                  <StyledButton onClick={handlerClickDelete}>삭제</StyledButton>
-                </>
-              )}
+              {
+                !data?.ismine
+                ? null
+                : <>
+                    <StyledButton onClick={handlerClickModify}>수정</StyledButton>
+                    <StyledButton onClick={handlerClickDelete}>삭제</StyledButton>
+                  </>
+              }
             </DetailButtons>
           </StyledLikeBlock>
         </StyledContentBox>

@@ -35,10 +35,9 @@ export const __getData = createAsyncThunk('USER_DATA', async (payload, thunkAPI)
 export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => {
   try {
     const { data } = await api.post(`/api/auth/signup`, payload);
-
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response);
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
@@ -58,7 +57,7 @@ export const signupSlice = createSlice({
     [__signup.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      alert(action.payload.data.msg)
+      alert(action.payload.msg)
     },
     [__getData.pending]: (state, action) => {
       state.isLoading = true;

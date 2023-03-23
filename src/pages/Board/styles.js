@@ -15,8 +15,8 @@ const StyledWrap = styled.div`
 `;
 
 const StyledBoardBlock = styled.div`
-  width: 1100px;
-  height: 800px;
+  width: 70vw;
+  height: 70vh;
   border: 1px solid lightgray;
   display: flex;
   z-index: 100;
@@ -42,10 +42,10 @@ const StyledImageBlock = styled.div`
 `;
 
 const StyledBodyForm = styled.form`
-  padding: 20px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 4vh;
 
   width: 100%;
 `;

@@ -2,12 +2,10 @@
  * 작성자 : 박찬우
  * 목적 : 게시글 작성, 수정
  * 작성 날짜 : 2023.03.21
- *
  */
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput';
 import LabelTextArea from '../../components/LabelTextarea/LabelTextArea';
@@ -57,15 +55,13 @@ function Board() {
       title,
       content: body,
     };
-    console.log('paylaod', paylaod);
+
     dispatch(__boardWriting(paylaod)).then((response) => {
       if (response.type === 'BOARD_WRITING/fulfilled') {
         navigate('/');
       }
     });
   };
-
-  console.log(image);
 
   return (
     <StyledWrap>

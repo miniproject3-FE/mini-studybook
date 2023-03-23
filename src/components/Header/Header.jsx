@@ -18,8 +18,10 @@ function Header() {
   const navigate = useNavigate();
 
   const handlerClickLogout = () => {
-    setLogout(true)
-    removeCookie('token')
+    if(window.confirm("로그아웃 하시겠습니까?")) {
+      setLogout(true)
+      removeCookie('token')
+    }
   };
 
   const cookie = getCookie('token');
@@ -28,7 +30,7 @@ function Header() {
 
   if (logout === true) {
     setLogout(false);
-    navigate('/login');
+    navigate('/');
   }
 
   return (
