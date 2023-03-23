@@ -29,29 +29,27 @@
 
 ## WildFrame
 
-![와일드 프레임](./src/assets/images/wildframe.png)
-
-![와일드 프레임2](./src/assets/images/wildframe2.png)
+![wildframe](https://user-images.githubusercontent.com/124577334/227242151-710274c4-8842-48b5-b970-5dc88d9d0183.png)
+![wildframe2](https://user-images.githubusercontent.com/124577334/227242160-2b9545a7-8cf6-4c4b-8b20-d08063af4bc2.png)
 
 ---
 
 ## 일정 계획
 
-![check](./src/assets/images/check.png)
-
----
+## <img width="1541" alt="check" src="https://user-images.githubusercontent.com/124577334/227242042-96300deb-49a1-4cc9-bd1f-6b6ed4d19e7a.png">
 
 ## ERD
 
-![check](./src/assets/images/ERD.png)
+<img width="834" alt="ERD" src="https://user-images.githubusercontent.com/124577334/227241522-f2d05fc1-5cd3-4323-bfc4-87aedaf9d821.png">
 
 ---
 
 ## API 명세서
 
-![check](./src/assets/images/API1.png)
-![check](./src/assets/images/API2.png)
-![check](./src/assets/images/API3.png)
+<img width="1122" alt="API1" src="https://user-images.githubusercontent.com/124577334/227241625-f07b017b-38ba-4b81-bcfa-9b61fb2136b5.png">
+
+<img width="1108" alt="API2" src="https://user-images.githubusercontent.com/124577334/227241700-4f8a3ad2-8015-4eb4-91a3-f73264d19ce7.png">
+<img width="1134" alt="API3" src="https://user-images.githubusercontent.com/124577334/227241765-23526877-4893-4448-83e3-2dd983263a87.png">
 
 --
 
