@@ -51,8 +51,6 @@ function Board() {
         image_file: '',
         preview_URL: 'img/default_image.png',
       });
-    } else {
-      alert('사진을 등록하세요!');
     }
 
     const paylaod = {

@@ -25,13 +25,12 @@ const initialState = {
       title: '',
       islike: false,
       loginid: '',
-    }
+    },
   ],
   error: null,
   isLoading: false,
   isSuccess: false,
 };
-
 
 // 전체 게시글 조회
 export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
@@ -59,7 +58,7 @@ export const __boardWriting = createAsyncThunk(
   'BOARD_WRITING',
   async (payload, thunkAPI) => {
     try {
-      const response = await api.post('./api/post', payload);
+      const response = await api.post('/api/post', payload);
       console.log('response', response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
@@ -74,13 +73,11 @@ export const __boardModify = createAsyncThunk(
   'BOARD_MODIFY',
   async (payload, thunkAPI) => {
     try {
-      const newContents = {
+      const newPayload = {
         title: payload.title,
         content: payload.content,
-        token: payload.token,
       };
-      console.log()
-      const response = await api.post(`./api/post/1`, newContents);
+      const response = await api.post(`./api/post/${payload.id}`, newPayload);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -93,7 +90,7 @@ export const __boardDelete = createAsyncThunk(
   'BOARD_DELETE',
   async (payload, thunkAPI) => {
     try {
-      const response = await api.delete(`./api/post/${payload}`);
+      const response = await api.delete(`/api/post/${payload}`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -196,8 +193,12 @@ const boardSlice = createSlice({
     [__boardLike.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.data.data = {...state.data.data, islike: action.payload.islike, totalCount: +action.payload.totalCount }
-      console.log('state.data--->>>', state.data.data)
+      state.data.data = {
+        ...state.data.data,
+        islike: action.payload.islike,
+        totalCount: +action.payload.totalCount,
+      };
+      console.log('state.data--->>>', state.data.data);
     },
     [__boardLike.rejected]: (state, action) => {
       state.isLoading = false;
