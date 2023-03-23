@@ -5,6 +5,7 @@ import drapdrop from '../../assets/images/dragdrop.png';
 const StyledButtonBox = styled.div`
   display: flex;
   justify-content: right;
+  gap: 10px;
 `;
 
 const StyledWrap = styled.div`

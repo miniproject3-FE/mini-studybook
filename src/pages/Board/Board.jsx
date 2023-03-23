@@ -63,6 +63,11 @@ function Board() {
     });
   };
 
+  const handlerClickCancel = (e) => {
+    e.preventDefault();
+    navigate('/');
+  };
+
   return (
     <StyledWrap>
       <StyledBoardBlock>
@@ -88,6 +93,7 @@ function Board() {
           />
           <StyledButtonBox>
             <Button size="medium" value="저장하기" />
+            <Button onClick={handlerClickCancel} size="medium" value="취소하기" />
           </StyledButtonBox>
         </StyledBodyForm>
       </StyledBoardBlock>
