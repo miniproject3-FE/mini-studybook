@@ -122,7 +122,7 @@ function Signup() {
             size="large"
             id={2}
             label="비밀번호 재확인"
-            placeholder="비밀번호를를 입력하세요."
+            placeholder="비밀번호를 입력하세요."
             type="password"
             value={pw2Info.value}
             onChange={pw2Handler}
