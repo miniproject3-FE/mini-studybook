@@ -41,11 +41,21 @@ export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => 
   }
 });
 
+export const __withdrawal = createAsyncThunk('WITHDRAWAL', async (payload, thunkAPI) => {
+  try {
+    const { data } = await api.delete('/api/auth/deleteid', payload);
+    return thunkAPI.fulfillWithValue(data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data)
+  }
+});
+
 export const signupSlice = createSlice({
   name: 'SING_UP',
   initialState,
   reducers: {},
   extraReducers: {
+    // 회원가입
     [__signup.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -60,6 +70,8 @@ export const signupSlice = createSlice({
       state.error = action.payload;
       alert(action.payload.msg)
     },
+
+    // 조회
     [__getData.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -72,6 +84,21 @@ export const signupSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     },
+
+    // 회원탈퇴
+    [__withdrawal.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__withdrawal.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      // alert(action.payload)
+    },
+    [__withdrawal.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.isLoading = false;
+      state.isError = true;
+    }
   },
 });
 
