@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# mini project team 3
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 프로젝트 소개
 
-## Available Scripts
+## 🖥️ Front-end
 
-In the project directory, you can run:
+[GitHub](https://github.com/orgs/miniproject3-FE/repositories)
 
-### `yarn start`
+## 🖥️ Back-end
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[GitHub](https://github.com/JinguLeee/studybook)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `yarn test`
+## 주요 기능
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 로그인 / 회원 가입
 
-### `yarn build`
+- 회원가입 시, 유효성 검사를 진행
+- 로그인 시, 토큰을 받아와 쿠키에 저장
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. CRUD 기능 구현
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. 좋아요 기능 구현
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Drap & Drop 기능 구현
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## WildFrame
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![와일드 프레임](./src/assets/images/wildframe.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![와일드 프레임2](./src/assets/images/wildframe2.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 일정 계획
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![check](./src/assets/images/check.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## ERD
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![check](./src/assets/images/ERD.png)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## API 명세서
 
-### Making a Progressive Web App
+![check](./src/assets/images/API1.png)
+![check](./src/assets/images/API2.png)
+![check](./src/assets/images/API3.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+--
 
-### Advanced Configuration
+## 기술 스택
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+  <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 
-### Deployment
+ <img src="https://img.shields.io/badge/redux tookit-764ABC?style=for-the-badge&logo=REDUX&logoColor=white">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+ <img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
 
-### `yarn build` fails to minify
+ <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+
+## <img src="https://img.shields.io/badge/amazon s3-569A31?style=for-the-badge&logo=amazon s3&logoColor=white">
+
+---
+
+## Troble Shooting
+
+1. json-server로 테스트 시 생긴 에러
+
+   <span style= 'color: red'>500 Internal Server Error</span>
+
+   json-server로 테스트 시 db.json에 “id”를 필수로 넣어줘야 하는데, 이를 지키지 않아서 발생한 오류.
+
+![image](https://user-images.githubusercontent.com/124577334/227239148-f5aa6c2f-cfcb-4502-8c39-2abc43936cef.png)
+
+2. Axios 콜 후 reject될 때 받아온 error를 rejectWithValue에 payload로 넘겨주는 과정에서 발생한 에러
+
+![image](https://user-images.githubusercontent.com/124577334/227239253-a8bb3228-219e-4286-816a-a4cd60fa31bc.png)
+
+<span style= 'color: red'>A non-serializable value</span>
+
+error에 담긴 데이터가 많기 때문에, error자체를 넘겨줄 때 필요한 정보를 선택하여 넘겨주어야 한다.
+
+3. 렌더링 문제
+
+   logout, signout, 좋아요를 눌렀을 때 페이지에 리렌더링이 되지 않는 경우가 여러번 발생했다. 그 중 몇가지 경우를 기록해보았다.
+
+![image](https://user-images.githubusercontent.com/124577334/227239372-2446006e-659a-4175-817f-a9ed03fad7ce.png)
+
+- 아래의 경우 : 화면에 그려줄 정보를 받아오면서 동시에 화면이 리렌더링되도록
+  Boards 컴포넌트에서 dispatch를 useEffect의 의존성 배열에 넣어서 이를 해결하고자 했다.
+
+![image](https://user-images.githubusercontent.com/124577334/227239467-62c136b4-219b-4207-8cde-a9c8c08fee57.png)
+
+- 아래의 경우 : 수정하기 페이지에서 버튼을 눌렀을 때 클라이언트단에서 리렌더링이 일어나지 않았다.
+  수정하기 버튼을 눌렀을 시 서버에 데이터를 전송하여 변경 하므로,
+  변경한 제목과 내용을 의존성 배열에 담아서 useSelector가 store에서 불러온 data에 변화가 있을 때
+  리렌더링 되도록 하였다.
+
+![image](https://user-images.githubusercontent.com/124577334/227239769-62f4631f-3e3c-458b-a376-7d65a20aace8.png)
+
+4. react cookie → universal cookie
+
+- 1.  로그인 시에 받은 token값을 저장해 두었다가, request head에 담아 서버에 보내주기 위해 react cookie를 사용하기로 했다.
+- 2.  대부분의 페이지에서 서버에 토큰 값을 보내주어야 했기 때문에, instance interceptor를 통해 서버와 통신 전에 항상 토큰을 보내주도록 하려고 의도하였다. 그러나 의도대로 되지 않았다.
+- 3. react-cookie의 경우 useCookie라는 hook으로 관리를 하며, useCookie를 사용하기 위해서는 Provider로 사용 범위를 지정해주어야 했다. 이로인해 오류가 발생한 것으로 추측하고 있다.
