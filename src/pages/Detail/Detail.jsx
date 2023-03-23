@@ -22,6 +22,7 @@ import {
 } from '../../redux/modules/boardSlice';
 import jwt_decode from 'jwt-decode';
 import { getCookie } from '../../auth/Cookie';
+import logoImage from '../../assets/images/logo2.png';
 
 function Detail() {
   const dispatch = useDispatch();
@@ -60,10 +61,17 @@ function Detail() {
     dispatch(__getBoard(id));
   }, []);
 
+  console.log('data?.imageUrl', !data?.imageUrl);
   return (
     <StyledWrap>
       <StyledContainer>
-        <StyledImageBox>이미지</StyledImageBox>
+        <StyledImageBox>
+          {!data?.imageUrl ? (
+            <StyledImage src={logoImage} />
+          ) : (
+            <StyledImage src={data.imageUrl} />
+          )}
+        </StyledImageBox>
         <StyledContentBox>
           <StyledTitleBlock>[ {data?.title} ]</StyledTitleBlock>
           <StyledContentBlock>
@@ -151,6 +159,7 @@ const StyledTimeBlock = styled.div`
   align-items: center;
   border-bottom: 0.2px solid gray;
 
+  color: #1d7b7b;
   /* border: 0.2px solid orange; */
 `;
 
@@ -186,6 +195,8 @@ const StyledContent = styled.div`
   width: inherit;
   height: 25vh;
   margin: 30px;
+  font-size: 20px;
+  font-weight: 700px;
 `;
 
 const StyledTitleBlock = styled.div`
@@ -194,13 +205,15 @@ const StyledTitleBlock = styled.div`
   height: 5vh;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: 700px;
 
+  border-bottom: 2px solid lightgray;
   /* background-color: #8c3e3e; */
 `;
 
 const StyledImageBox = styled.div`
-  width: 30vw;
+  width: 50vw;
   height: 60vh;
 
   border-radius: 0, 0 0, 10px;
@@ -235,6 +248,15 @@ const StyledWrap = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+  //이미지 영역안에 적절하게 정렬해서 배치하는 속성
+  object-position: center;
+  object-fit: cover;
+  border-radius: 8px;
 `;
 
 export default Detail;

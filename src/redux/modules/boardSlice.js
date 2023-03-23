@@ -17,6 +17,7 @@ const initialState = {
       totalCount: 0,
       loginid: 'id0222222',
       title: 'title06',
+      imageUrl: '',
     },
   ],
   getDatas: [
