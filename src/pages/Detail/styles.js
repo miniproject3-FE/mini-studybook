@@ -23,7 +23,6 @@ const StyledButton = styled.div`
 const StyledLikeBox = styled.div`
   width: 60px;
   height: 30px;
-  /* background: red; */
   margin-left: 20px;
 
   display: flex;
@@ -39,7 +38,6 @@ const StyledLikeBlock = styled.div`
   height: 5vh;
   justify-content: space-between;
   align-items: center;
-  /* background-color: #3b1e1e; */
 `;
 
 const StyledTimeBlock = styled.div`
@@ -51,7 +49,6 @@ const StyledTimeBlock = styled.div`
   border-bottom: 0.2px solid gray;
 
   color: #1d7b7b;
-  /* border: 0.2px solid orange; */
 `;
 
 const StyledTime = styled.div`
@@ -65,7 +62,6 @@ const StyledAutherBlock = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  /* background-color: #4f3c3c; */
 `;
 
 const StyledAuther = styled.div`
@@ -77,9 +73,6 @@ const StyledContentBlock = styled.div`
   width: inherit;
   height: 40vh;
   justify-content: flex-start;
-
-  /* border-bottom: 0.2px solid gray; */
-  /* background-color: #781a1a; */
 `;
 
 const StyledContent = styled.div`
@@ -100,7 +93,6 @@ const StyledTitleBlock = styled.div`
   font-weight: 700px;
 
   border-bottom: 2px solid lightgray;
-  /* background-color: #8c3e3e; */
 `;
 
 const StyledImageBox = styled.div`
@@ -115,7 +107,6 @@ const StyledImageBox = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  /* background: lightgray; */
   border: 0.2px solid gray;
   border-radius: 10px;
   display: flex;
@@ -129,8 +120,6 @@ const StyledContentBox = styled.div`
   width: 30vw;
   height: 60vh;
   border-radius: 10px;
-
-  /* background: #4c4c4c; */
 `;
 
 const StyledWrap = styled.div`
@@ -144,7 +133,6 @@ const StyledWrap = styled.div`
 const StyledImage = styled.img`
   width: 100%;
   height: 100%;
-  //이미지 영역안에 적절하게 정렬해서 배치하는 속성
   object-position: center;
   object-fit: cover;
   border-radius: 8px;

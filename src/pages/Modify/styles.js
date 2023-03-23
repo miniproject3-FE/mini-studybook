@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import drapdrop from '../../assets/images/dragdrop.png';
 
 const StyledButtonBox = styled.div`

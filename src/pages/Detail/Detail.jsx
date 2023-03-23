@@ -1,18 +1,3 @@
-/**
- * 작성자 : 박찬우
- * 목적 : 게시글 작성, 수정
- * 작성 날짜 : 2023.03.21
- *
- *
- * 수정자: 김은영
- * 목적: 전반적인 스타일 수정, 수정/삭제버튼 기능 개발 및 연결, 좋아요 기능 수정
- * 작성 날짜: 2023-03-22
- *
- * 수정자: 김은영
- * 목적: 수정/삭제버튼 표시 조건추가
- * 수정 날짜: 2023-03-23
- */
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -48,7 +33,6 @@ function Detail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //도메인에서 현재페에지 id 값 가져오기
   const { id } = useParams();
   const { isLoading, isError, data } = useSelector((state) => state.board.data);
 

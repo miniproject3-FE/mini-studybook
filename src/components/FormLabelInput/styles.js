@@ -35,7 +35,6 @@ const sizes = {
 };
 
 const StyledInput = styled.input`
-  /* 공통 속성 */
 
   height: 50px;
   width: 99%;

@@ -1,13 +1,3 @@
-/**
- * 작성자: 김은영
- * 목적: 로그인 기능구현
- * 작성 날짜: 2023-03-18
- *
- * 수정자: 김은영
- * 목적: 로고 클릭시 홈 화면으로 이동 및 호버시 커서모양 변경
- * 수정 날찌: 2023-03-23
- */
-
 import React from 'react';
 import useInput from '../../hooks/useInput';
 import { useDispatch } from 'react-redux';

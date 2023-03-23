@@ -1,9 +1,3 @@
-/**
- * 작성자: 김은영
- * 목적: style 분리
- * 날짜: 2023-03-22
- */
-
 import styled from "styled-components"
 
 

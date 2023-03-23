@@ -1,13 +1,6 @@
-/**
- * 작성자: 김은영
- * 목적: 게시글 정보를 가져오기 위한 slice생성
- * 날짜: 2023-03-21
- */
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from '../../axios/api';
 
-// 초기값
 const initialState = {
   data: [
     {
@@ -34,7 +27,6 @@ const initialState = {
   isSuccess: false,
 };
 
-// 전체 게시글 조회
 export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkAPI) => {
   try {
     const response = await api.get('/api/post');
@@ -44,7 +36,6 @@ export const __getBoards = createAsyncThunk('GET_BOARDS', async (payload, thunkA
   }
 });
 
-// 선택 게시글 조회
 export const __getBoard = createAsyncThunk('GET_BOARD', async (payload, thunkAPI) => {
   try {
     const response = await api.get(`/api/post/${payload}`);
@@ -54,7 +45,6 @@ export const __getBoard = createAsyncThunk('GET_BOARD', async (payload, thunkAPI
   }
 });
 
-// 게시글 작성
 export const __boardWriting = createAsyncThunk(
   'BOARD_WRITING',
   async (payload, thunkAPI) => {
@@ -67,7 +57,6 @@ export const __boardWriting = createAsyncThunk(
   }
 );
 
-// 게시글 수정
 export const __boardModify = createAsyncThunk(
   'BOARD_MODIFY',
   async (payload, thunkAPI) => {
@@ -84,7 +73,6 @@ export const __boardModify = createAsyncThunk(
   }
 );
 
-// 게시글 삭제
 export const __boardDelete = createAsyncThunk(
   'BOARD_DELETE',
   async (payload, thunkAPI) => {
@@ -97,7 +85,6 @@ export const __boardDelete = createAsyncThunk(
   }
 );
 
-// 게시글 좋아요
 export const __boardLike = createAsyncThunk('BOARD_LIKE', async (payload, thunkAPI) => {
   try {
     const response = await api.post(`/api/post/${payload}`);
@@ -107,13 +94,11 @@ export const __boardLike = createAsyncThunk('BOARD_LIKE', async (payload, thunkA
   }
 });
 
-// 게시글 Slice
 const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {},
   extraReducers: {
-    // 게시글 작성 reducer
     [__boardWriting.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -128,7 +113,6 @@ const boardSlice = createSlice({
       state.error = action;
     },
 
-    // 게시글 수정 reducer
     [__boardModify.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -142,7 +126,6 @@ const boardSlice = createSlice({
       state.error = action;
     },
 
-    // 게시글 삭제 reducer
     [__boardDelete.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -156,7 +139,6 @@ const boardSlice = createSlice({
       state.error = action;
     },
 
-    // 게시글 전체조회 reducer
     [__getBoards.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -169,7 +151,6 @@ const boardSlice = createSlice({
       state.error = action.payload;
     },
 
-    // 게시글 상세조회 reducer
     [__getBoard.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -182,7 +163,6 @@ const boardSlice = createSlice({
       state.error = action.payload;
     },
 
-    // 게시글 좋아요 reducer
     [__boardLike.pending]: (state, action) => {
       state.isLoading = true;
     },

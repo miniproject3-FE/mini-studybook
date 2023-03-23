@@ -1,9 +1,3 @@
-/**
- * 작성자 : 박찬우
- * 목적 : label + textArea + error 박스 컴포넌트
- * 작성 날짜 : 2023.03.21
- */
-
 import React from 'react';
 import { StyledBlock, StyledErrorDiv, StyledLabel, StyledTextarea } from './styles';
 

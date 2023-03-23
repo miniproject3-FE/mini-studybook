@@ -1,13 +1,3 @@
-/**
- * 작성자 : 김은영
- * 목적 : 프로젝트 내에서 공통적으로 쓰일 Header생성
- * 코드 작성 날짜 : 2023-03-17
- *
- * 수정자: 김은영
- * 목적: 회원탈퇴 기능 추가
- * 작성 날짜: 2023-03-23
- */
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -54,39 +44,19 @@ function Header() {
     <StyledHeader>
       <StyledUl>
         <StyledLi
-          onClick={() => {
-            navigate('/board');
-          }}
-        >
-          {' '}
-          | Write{' '}
-        </StyledLi>
+          onClick={() => { navigate('/board') }} > | Write </StyledLi>
 
-        {cookie !== undefined ? (
-          <StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>
-        ) : (
-          <StyledLi
-            onClick={() => {
-              navigate('/login');
-            }}
-          >
-            {' '}
-            | Login{' '}
-          </StyledLi>
-        )}
+        {
+        cookie !== undefined 
+        ? ( <StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>) 
+        : ( <StyledLi onClick={() => {navigate('/login')}}>| Login </StyledLi>)
+        }
 
-        {cookie !== undefined ? (
-          <StyledLi onClick={onClickWithdrawalHandler}> | SignOut </StyledLi>
-        ) : (
-          <StyledLi
-            onClick={() => {
-              navigate('/signup');
-            }}
-          >
-            {' '}
-            | Signup{' '}
-          </StyledLi>
-        )}
+        {
+        cookie !== undefined 
+        ? (<StyledLi onClick={onClickWithdrawalHandler}> | SignOut </StyledLi>) 
+        : (<StyledLi onClick={() => { navigate('/signup')}}> | Signup </StyledLi>)
+        }
       </StyledUl>
     </StyledHeader>
   );

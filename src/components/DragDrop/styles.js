@@ -32,7 +32,6 @@ const StyledInner = styled.div`
 const StyledImage = styled.img`
   width: 100%;
   height: 100%;
-  //이미지 영역안에 적절하게 정렬해서 배치하는 속성
   object-position: center;
   object-fit: cover;
   border-radius: 8px;

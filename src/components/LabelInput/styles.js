@@ -1,22 +1,3 @@
-/**
- * 수정한 사람 : 박찬우
- * 수정 내용 :
- * 1. input 과 label 위치가 통일되어 있지않아서 수정
- * 3. input의 height 기본 속성 제거 (이거 때매 높이가 안맞음)
-
- * 5. props로 인자 묶기 -> 보기 깔끔하기 위해서
- * 6. labelInput label 과 Input size 맞추기
- * 수정 날짜 : 2023-03-18
- * 
- * ---------------------------------------------
- * 수정한 사람 : 박찬우
- * 수정 내용 :
- * 1. label font size를 props로 넣을 수 있게 하기
- * 2. StyledLabelBlock width 기본값 100%로 변경
- * 3. sizes 에 board 추가
- * 수정 날짜: 2023.03.20
- */
-
 import styled, { css } from 'styled-components';
 
 const sizes = {
@@ -42,13 +23,11 @@ const StyledLabel = styled.label`
     `}
 `;
 const StyledInput = styled.input`
-  /* 공통 속성 */
   height: 1.75rem;
   width: 400px;
   border: none;
   border-radius: 5px;
   outline: none;
-  /* 개별속성 */
 
   ${({ size }) =>
     size &&

@@ -1,17 +1,4 @@
-/**
- * 작성자 : 박찬우
- * 목적 : image Drag & Drop
- * 작성 날짜 : 2023.03.22
- *
- * 리펙토링 :
- * readAsDataURL과 다르게 동기적으로 실행되고
- *  주어진 객체를 가리키는 URL을 DOMString으로 반환한다.
- * 창을 닫을 때 까지 유지되며, 그 전에 해제하기 위해서는 메모리 누수 방지를 위해
- * 앵간하면 revokeObjectURL()을 호출해야한다.
- * FileLeader와 달리 시간이 필요하지 않고 revoke만 잘해준다면 속도가 많이 빠르다
- */
-
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyledContainer, StyledLabel, StyledInner, StyledImage } from './styles';
 import DragImage from '../../assets/images/dragdrop.png';
 
@@ -20,7 +7,6 @@ function DragBox(props) {
 
   const saveImage = (file) => {
     if (file) {
-      //새로운 이미지를 올리면 createObjectURL()을 통해 생성한 기존 URL을 폐기
       URL.revokeObjectURL(props.image.preview_URL);
       const preview_URL = URL.createObjectURL(file);
       props.setImage(() => ({
@@ -31,7 +17,6 @@ function DragBox(props) {
   };
 
   const deleteImage = () => {
-    //createObjectURL()을 통해 생성한 기존 URL을 폐기
     URL.revokeObjectURL(props.image.preview_URL);
     props.setImage({
       image_file: '',
@@ -58,7 +43,6 @@ function DragBox(props) {
   };
 
   useEffect(() => {
-    //컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
     if (props.defaultImage !== '') {
       props.setImage({ ...props.image, preview_URL: props.defaultImage });
     }

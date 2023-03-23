@@ -1,13 +1,5 @@
-/**
- * 작성자 : 박찬우
- * 목적 : 게시글 작성, 수정
- * 작성 날짜 : 2023.03.21
- *
- */
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput';
 import LabelTextArea from '../../components/LabelTextarea/LabelTextArea';
@@ -25,9 +17,6 @@ import {
   StyledBoardBlock,
   StyledImageBlock,
   StyledBodyForm,
-  StyledContainer,
-  StyledInner,
-  StyledImage,
 } from './styles';
 
 import defaultImage from '../../assets/images/logo2.png';
@@ -64,7 +53,6 @@ function Modify() {
     if (image.image_file) {
       const formData = new FormData();
       formData.append('file', image.image_file);
-      //await axios.post('/api/image/upload', formData);
       alert('서버에 등록이 완료되었습니다!');
       setImage({
         image_file: '',
