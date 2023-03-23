@@ -65,8 +65,6 @@ function Board() {
     });
   };
 
-  console.log(image);
-
   return (
     <StyledWrap>
       <StyledBoardBlock>

@@ -8,6 +8,7 @@ import React from 'react';
 import { StyledButton } from './styles';
 
 function Button(props) {
+  console.log('props', props);
   return (
     <StyledButton
       color={props.color}
