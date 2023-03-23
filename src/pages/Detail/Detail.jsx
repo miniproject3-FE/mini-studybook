@@ -184,7 +184,6 @@ const StyledContent = styled.div`
   width: inherit;
   height: 25vh;
   margin: 30px;
-  overflow: scroll;
 `;
 
 const StyledTitleBlock = styled.div`
@@ -201,8 +200,9 @@ const StyledTitleBlock = styled.div`
 const StyledImageBox = styled.div`
   width: 30vw;
   height: 60vh;
-  background: gray;
 
+  border-radius: 0, 0 0, 10px;
+  border-right: 3px solid lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,14 +211,19 @@ const StyledImageBox = styled.div`
 const StyledContainer = styled.div`
   /* background: lightgray; */
   border: 0.2px solid gray;
-  border-radius: 2px;
+  border-radius: 10px;
   display: flex;
+
+  border: 1px solid lightgray;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 `;
 
 const StyledContentBox = styled.div`
   width: 30vw;
   height: 60vh;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 10px;
+
   /* background: #4c4c4c; */
 `;
 

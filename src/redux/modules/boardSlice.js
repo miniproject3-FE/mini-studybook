@@ -168,7 +168,6 @@ const boardSlice = createSlice({
     },
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log('action.payload', action.payload);
       state.getDatas = action.payload;
     },
     [__getBoards.rejected]: (state, action) => {
