@@ -60,7 +60,7 @@ function Board() {
     console.log('paylaod', paylaod);
     dispatch(__boardWriting(paylaod)).then((response) => {
       if (response.type === 'BOARD_WRITING/fulfilled') {
-        navigate('/');
+        navigate('/main');
       }
     });
   };

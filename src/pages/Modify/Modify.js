@@ -78,7 +78,7 @@ function Modify() {
     console.log('paylaod', paylaod);
     dispatch(__boardModify(paylaod)).then((response) => {
       if (response.type === 'BOARD_MODIFY/fulfilled') {
-        navigate('/');
+        navigate('/main');
       }
     });
   };

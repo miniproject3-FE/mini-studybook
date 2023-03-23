@@ -18,9 +18,9 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} element={<Main />} />
+        <Route path={'/main'} element={<Main />} />
         <Route path={'/signup'} element={<Signup />} />
-        <Route path={'/login'} element={<Login />} />
+        <Route path={'/'} element={<Login />} />
         <Route path={'/board'} element={<Board />} />
         <Route path={'/detail/:id'} element={<Detail />} />
         <Route path={'/modify/:id'} element={<Modify />} />

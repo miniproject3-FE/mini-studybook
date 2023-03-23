@@ -18,34 +18,60 @@ function Header() {
   const navigate = useNavigate();
 
   const handlerClickLogout = () => {
-    setLogout(true)
-    removeCookie('token')
+    setLogout(true);
+    removeCookie('token');
   };
 
   const cookie = getCookie('token');
 
-  
-
   if (logout === true) {
     setLogout(false);
-    navigate('/login');
+    navigate('/');
   }
 
   return (
     <StyledHeader>
       <StyledUl>
-        <StyledLi onClick={() => { navigate('/board')}}> | Write </StyledLi>
+        <StyledLi
+          onClick={() => {
+            navigate('/board');
+          }}
+        >
+          {' '}
+          | Write{' '}
+        </StyledLi>
 
-        {
-        cookie !== undefined 
-        ? (<StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>) 
-        : (<StyledLi onClick={() => { navigate('/login');}}> | Login </StyledLi>)
-        }
-        {
-        cookie !== undefined 
-        ? ( <StyledLi onClick={() => { navigate('/withdrawal'); }}> | Withdrawal </StyledLi>) 
-        : (<StyledLi onClick={() => { navigate('/signup'); }}> | Signup </StyledLi>)
-        }
+        {cookie !== undefined ? (
+          <StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>
+        ) : (
+          <StyledLi
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            {' '}
+            | Login{' '}
+          </StyledLi>
+        )}
+        {cookie !== undefined ? (
+          <StyledLi
+            onClick={() => {
+              navigate('/withdrawal');
+            }}
+          >
+            {' '}
+            | Withdrawal{' '}
+          </StyledLi>
+        ) : (
+          <StyledLi
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
+            {' '}
+            | Signup{' '}
+          </StyledLi>
+        )}
       </StyledUl>
     </StyledHeader>
   );

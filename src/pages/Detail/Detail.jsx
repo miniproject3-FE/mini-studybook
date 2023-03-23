@@ -46,12 +46,12 @@ function Detail() {
   const handlerClickDelete = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       dispatch(__boardDelete(id));
-      navigate('/');
+      navigate('/main');
     }
   };
 
   const handlerClickMainNav = () => {
-    navigate('/');
+    navigate('/main');
   };
 
   useEffect(() => {

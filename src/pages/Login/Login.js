@@ -34,7 +34,7 @@ function Login() {
   const loginOnsubmitHandler = (user) => {
     dispatch(__login(user)).then((response) => {
       if (response.type === 'Login/fulfilled') {
-        navigate('/');
+        navigate('/main');
       }
     });
     idChangeHandler('');
@@ -51,7 +51,7 @@ function Login() {
       <StyledHeader>
         <LogoBox
           onClick={() => {
-            navigate('/');
+            navigate('/main');
           }}
         />
       </StyledHeader>
@@ -88,7 +88,7 @@ function Login() {
         <StyledBtnBox>
           <Button
             size="large"
-            value="로그인"
+            value="회원가입"
             background="#14213D"
             onClick={() => {
               navigate('/signup');
