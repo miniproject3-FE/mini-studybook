@@ -5,16 +5,20 @@
  *
  */
 
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput';
 import LabelTextArea from '../../components/LabelTextarea/LabelTextArea';
 import useInput from '../../hooks/useInput';
-import { __boardModify, __boardWriting } from '../../redux/modules/boardSlice';
-import { useNavigate } from 'react-router-dom';
-
+import DragBox from '../../components/DragDrop/DragBox';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  __boardModify,
+  __boardWriting,
+  __getBoard,
+} from '../../redux/modules/boardSlice';
 import {
   StyledButtonBox,
   StyledWrap,
@@ -26,16 +30,29 @@ import {
   StyledImage,
 } from './styles';
 
-import DragBox from '../../components/DragDrop/DragBox';
-
-function Board() {
-  const [title, setTitle] = useInput();
-  const [body, setBody] = useInput();
+function Modify() {
+  const [title, setTitle, changeTitle] = useInput();
+  const [body, setBody, changeBody] = useInput();
 
   const [image, setImage] = useState({
     image_file: '',
     preview_URL: '',
   });
+
+  const { id } = useParams();
+
+  const { isLoading, isError, data } = useSelector((state) => state.board.data);
+
+  useEffect(() => {
+    dispatch(__getBoard(id));
+  }, []);
+
+  console.log('data--------', JSON.stringify(data));
+  useEffect(() => {
+    console.log('useEffect,');
+    changeTitle(data.title);
+    changeBody(data.content);
+  }, [JSON.stringify(data), data !== undefined]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,9 +73,11 @@ function Board() {
     const paylaod = {
       title,
       content: body,
+      id: id,
     };
     console.log('paylaod', paylaod);
-    dispatch(__boardWriting(paylaod)).then((response) => {
+    dispatch(__boardModify(paylaod)).then((response) => {
+      console.log(response);
       if (response.type === 'BOARD_WRITING/fulfilled') {
         navigate('/');
       }
@@ -99,4 +118,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default Modify;

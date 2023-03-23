@@ -3,7 +3,7 @@
  * 목적 : 게시글 작성, 수정
  * 작성 날짜 : 2023.03.21
  *
- * 
+ *
  * 수정자: 김은영
  * 목적: 전반적인 스타일 수정, 수정/삭제버튼 기능 개발 및 연결, 좋아요 기능 수정
  * 작성 날짜: 2023-03-22
@@ -13,11 +13,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { __boardLike, __boardModify, __getBoard, __boardDelete } from '../../redux/modules/boardSlice';
-
+import {
+  __boardLike,
+  __boardModify,
+  __getBoard,
+  __boardDelete,
+} from '../../redux/modules/boardSlice';
+import jwt_decode from 'jwt-decode';
+import { getCookie } from '../../auth/Cookie';
 
 function Detail() {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,17 +30,21 @@ function Detail() {
   const { id } = useParams();
   const { isLoading, isError, data } = useSelector((state) => state.board.data);
 
+  //토큰 decode
+  const token = getCookie(['token']);
+  const loginId = jwt_decode(token).sub;
+
   const handlerClickLike = () => {
     dispatch(__boardLike(id));
     dispatch(__getBoard(id));
   };
 
   const handlerClickModify = () => {
-    navigate(`/board/${id}`);
+    navigate(`/modify/${id}`);
   };
 
   const handlerClickDelete = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
       dispatch(__boardDelete(id));
       navigate('/');
     }
@@ -43,10 +52,10 @@ function Detail() {
 
   const handlerClickMainNav = () => {
     navigate('/');
-  }
+  };
 
   useEffect(() => {
-    console.log('useEffect 호출될때마다 알려죠~')
+    console.log('useEffect 호출될때마다 알려죠~');
     dispatch(__getBoard(id));
   }, []);
   console.log('selector', data);
@@ -61,21 +70,29 @@ function Detail() {
             <StyledContent> {data?.content} </StyledContent>
           </StyledContentBlock>
           <StyledAutherBlock>
-           <StyledAuther> {data?.loginid} </StyledAuther>
+            <StyledAuther> {data?.loginid} </StyledAuther>
           </StyledAutherBlock>
           <StyledTimeBlock>
             <StyledTime> {data?.createdAt} </StyledTime>
           </StyledTimeBlock>
           <StyledLikeBlock>
-            {
-              !data?.islike
-              ? <StyledLikeBox onClick={handlerClickLike}>🤍 {data?.totalCount}</StyledLikeBox>
-              : <StyledLikeBox onClick={handlerClickLike}>❤️ {data?.totalCount}</StyledLikeBox>
-            }
+            {!data?.islike ? (
+              <StyledLikeBox onClick={handlerClickLike}>
+                🤍 {data?.totalCount}
+              </StyledLikeBox>
+            ) : (
+              <StyledLikeBox onClick={handlerClickLike}>
+                ❤️ {data?.totalCount}
+              </StyledLikeBox>
+            )}
             <DetailButtons>
               <StyledButton onClick={handlerClickMainNav}>완료</StyledButton>
-              <StyledButton onClick={handlerClickModify}>수정</StyledButton>
-              <StyledButton onClick={handlerClickDelete}>삭제</StyledButton>
+              {loginId === data?.loginid && (
+                <>
+                  <StyledButton onClick={handlerClickModify}>수정</StyledButton>
+                  <StyledButton onClick={handlerClickDelete}>삭제</StyledButton>
+                </>
+              )}
             </DetailButtons>
           </StyledLikeBlock>
         </StyledContentBox>
@@ -87,7 +104,7 @@ function Detail() {
 const DetailButtons = styled.div`
   display: flex;
   margin-right: 18px;
-`
+`;
 
 const StyledButton = styled.div`
   height: 30px;
@@ -139,7 +156,7 @@ const StyledTimeBlock = styled.div`
 
 const StyledTime = styled.div`
   margin-right: 30px;
-`
+`;
 
 const StyledAutherBlock = styled.div`
   display: flex;
@@ -153,7 +170,7 @@ const StyledAutherBlock = styled.div`
 
 const StyledAuther = styled.div`
   margin-right: 30px;
-`
+`;
 
 const StyledContentBlock = styled.div`
   display: flex;
@@ -170,7 +187,7 @@ const StyledContent = styled.div`
   height: 25vh;
   margin: 30px;
   overflow: scroll;
-`
+`;
 
 const StyledTitleBlock = styled.div`
   display: flex;
