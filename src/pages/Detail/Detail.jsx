@@ -55,10 +55,8 @@ function Detail() {
   };
 
   useEffect(() => {
-    console.log('useEffect 호출될때마다 알려죠~');
     dispatch(__getBoard(id));
   }, []);
-  console.log('selector', data);
 
   return (
     <StyledWrap>

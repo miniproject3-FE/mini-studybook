@@ -33,6 +33,8 @@ import {
 function Modify() {
   const [title, setTitle, changeTitle] = useInput();
   const [body, setBody, changeBody] = useInput();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [image, setImage] = useState({
     image_file: '',
@@ -47,15 +49,13 @@ function Modify() {
     dispatch(__getBoard(id));
   }, []);
 
-  console.log('data--------', JSON.stringify(data));
   useEffect(() => {
-    console.log('useEffect,');
-    changeTitle(data.title);
-    changeBody(data.content);
-  }, [JSON.stringify(data), data !== undefined]);
+    if (data?.title !== undefined && data?.content !== undefined) {
+      changeTitle(data?.title);
+      changeBody(data?.content);
+    }
+  }, [data?.title, data?.content]);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handlerSubmit = (e) => {
     e.preventDefault();
 
@@ -77,8 +77,7 @@ function Modify() {
     };
     console.log('paylaod', paylaod);
     dispatch(__boardModify(paylaod)).then((response) => {
-      console.log(response);
-      if (response.type === 'BOARD_WRITING/fulfilled') {
+      if (response.type === 'BOARD_MODIFY/fulfilled') {
         navigate('/');
       }
     });
