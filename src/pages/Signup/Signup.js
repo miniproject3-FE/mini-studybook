@@ -8,17 +8,22 @@
  *
  * 작성 날짜 :2023.03.18
  *
+ * 수정자: 김은영
+ * 목적: 로고 클릭시 홈으로 이동 호버시 커서모양 변경
+ * 수정 날짜: 2023-03-23
+ *
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput';
 import LogoBox from '../../components/LogoBox';
-import useInput from '../../Hooks/useInput';
+import useInput from '../../hooks/useInput';
 import { __getData, __signup } from '../../redux/modules/signupSlice';
 import { StyledBody, StyledForm, StyledHeader, StyledWrap } from './styles';
+import useSignInfo from '../../hooks/useSignInfo';
 import {
   idCheck,
   pwCheck,
@@ -26,7 +31,7 @@ import {
   nameCheck,
   reconfirmPassword,
 } from '../../utils/loginValidation';
-import useSignInfo from '../../Hooks/useSignInfo';
+
 function Signup() {
   //hook
   const [idInfo, idHandler, idError] = useSignInfo();
@@ -36,6 +41,7 @@ function Signup() {
   const [pw2Info, pw2Handler, pw2Error] = useSignInfo();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [click, setClick] = useState(false);
 
   //function
   const handlerSubmit = (e) => {
@@ -47,6 +53,7 @@ function Signup() {
     emailError(emailCheck(emailInfo.value));
     usernameError(nameCheck(username.value));
     pw2Error(reconfirmPassword(pwInfo.value, pw2Info.value));
+    setClick(!click);
   };
 
   //버튼 클릭시 handlerSubmit 함수가 실행이 되는데,
@@ -74,15 +81,19 @@ function Signup() {
       };
       console.log('newUser', newUser);
 
-      dispatch(__signup(newUser));
-      navigate('/login');
+      dispatch(__signup(newUser)).then((response) => {
+        console.log(response);
+        if (response.type === 'signup/fulfilled') {
+          navigate('/login');
+        }
+      });
     }
-  }, [handlerSubmit]);
+  }, [click]);
 
   return (
     <StyledWrap>
       <StyledHeader>
-        <LogoBox />
+        <LogoBox onClick={() => navigate('/')} />
       </StyledHeader>
       <StyledBody>
         <StyledForm>

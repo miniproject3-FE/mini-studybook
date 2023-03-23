@@ -23,14 +23,14 @@
  */
 
 const idCheck = (id) => {
-  const idRegEx = /^[a-z0-9]{8,16}$/;
+  const idRegEx = /^[a-z0-9]{6,16}$/;
   let message = '';
   let isError = !idRegEx.test(id);
 
   if (id === '') {
     message = '아이디는 필수입니다.';
   } else if (isError === true) {
-    message = '아이디는 소문자와 숫자 포함된 8자 ~ 16자의 아이디여야 합니다.';
+    message = '아이디는 소문자와 숫자 포함된 6자 ~ 16자의 아이디여야 합니다.';
   } else {
     message = '';
   }
