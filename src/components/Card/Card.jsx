@@ -6,6 +6,9 @@
  * 수정자: 김은영
  * 목적: styles 분리 및 표현 내역 수정
  * 수정 날짜: 2023-03-22
+ * 
+ * 수정자: 김은영
+ * 목적: login하지 않은 user도 화면에서 heart를 볼 수 있도록 한다.
  */
 
 import React from "react";
@@ -26,11 +29,7 @@ function Card(board) {
                 <Image src={logo} alt={logo} />
                 <Title>{card.loginid}님의 카드</Title>
                 {
-                    !getCookie('token') ? 
-                    <Like>
-                        <Text> [{card.title}] </Text>
-                    </Like>
-                    : board.board.islike ? 
+                    board.board.islike ? 
                     <Like>
                         <Text> [{card.title}] </Text>
                         <Text> ❤️{card.totalCount} </Text>

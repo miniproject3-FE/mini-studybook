@@ -27,6 +27,7 @@ function Header() {
     if(window.confirm("로그아웃 하시겠습니까?")) {
       setLogout(true)
       removeCookie('token')
+      dispatch(__getBoards());
     }
   };
 
@@ -37,10 +38,11 @@ function Header() {
       dispatch(__withdrawal()).then((response) => {
         if (response.type === 'WITHDRAWAL/fulfilled') {
           removeCookie('token');
+          setLogout(true)
+          dispatch(__getBoards());
         }
       });
     }
-    dispatch(__getBoards());
   };
 
   if (logout === true) {
@@ -53,11 +55,11 @@ function Header() {
       <StyledUl>
         <StyledLi onClick={() => { navigate('/board')}} > | Write </StyledLi>
 
-        {cookie !== true
+        {cookie !== undefined
           ? (<StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>)
           : (<StyledLi onClick={() => { navigate('/login') }} > | Login </StyledLi>)}
 
-        {cookie !== true
+        {cookie !== undefined
           ? (<StyledLi onClick={onClickWithdrawalHandler} > | Withdrawal </StyledLi>)
           : (<StyledLi onClick={() => { navigate('/signup') }} > | Signup </StyledLi>)}
       </StyledUl>
