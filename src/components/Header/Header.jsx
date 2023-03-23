@@ -2,7 +2,7 @@
  * 작성자 : 김은영
  * 목적 : 프로젝트 내에서 공통적으로 쓰일 Header생성
  * 코드 작성 날짜 : 2023-03-17
- * 
+ *
  * 수정자: 김은영
  * 목적: 회원탈퇴 기능 추가
  * 작성 날짜: 2023-03-23
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCookie, removeCookie } from '../../auth/Cookie';
 import { __getBoards } from '../../redux/modules/boardSlice';
 import { __logout } from '../../redux/modules/loginSlice';
-import { __withdrawal } from '../../redux/modules/signupSlice';
+import { __signout } from '../../redux/modules/signupSlice';
 import { StyledHeader, StyledLi, StyledUl } from './styles';
 
 function Header() {
@@ -24,9 +24,9 @@ function Header() {
   const navigate = useNavigate();
 
   const handlerClickLogout = () => {
-    if(window.confirm("로그아웃 하시겠습니까?")) {
-      setLogout(true)
-      removeCookie('token')
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      setLogout(true);
+      removeCookie('token');
       dispatch(__getBoards());
     }
   };
@@ -34,11 +34,11 @@ function Header() {
   const cookie = getCookie('token');
 
   const onClickWithdrawalHandler = () => {
-    if(window.confirm("회원탈퇴 하시겠습니까?")) {
-      dispatch(__withdrawal()).then((response) => {
+    if (window.confirm('회원탈퇴 하시겠습니까?')) {
+      dispatch(__signout()).then((response) => {
         if (response.type === 'WITHDRAWAL/fulfilled') {
           removeCookie('token');
-          setLogout(true)
+          setLogout(true);
           dispatch(__getBoards());
         }
       });
@@ -53,15 +53,40 @@ function Header() {
   return (
     <StyledHeader>
       <StyledUl>
-        <StyledLi onClick={() => { navigate('/board')}} > | Write </StyledLi>
+        <StyledLi
+          onClick={() => {
+            navigate('/board');
+          }}
+        >
+          {' '}
+          | Write{' '}
+        </StyledLi>
 
-        {cookie !== undefined
-          ? (<StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>)
-          : (<StyledLi onClick={() => { navigate('/login') }} > | Login </StyledLi>)}
+        {cookie !== undefined ? (
+          <StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>
+        ) : (
+          <StyledLi
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
+            {' '}
+            | Login{' '}
+          </StyledLi>
+        )}
 
-        {cookie !== undefined
-          ? (<StyledLi onClick={onClickWithdrawalHandler} > | Withdrawal </StyledLi>)
-          : (<StyledLi onClick={() => { navigate('/signup') }} > | Signup </StyledLi>)}
+        {cookie !== undefined ? (
+          <StyledLi onClick={onClickWithdrawalHandler}> | SignOut </StyledLi>
+        ) : (
+          <StyledLi
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
+            {' '}
+            | Signup{' '}
+          </StyledLi>
+        )}
       </StyledUl>
     </StyledHeader>
   );
