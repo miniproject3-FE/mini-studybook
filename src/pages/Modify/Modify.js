@@ -30,6 +30,8 @@ import {
   StyledImage,
 } from './styles';
 
+import defaultImage from '../../assets/images/logo2.png';
+
 function Modify() {
   const [title, setTitle, changeTitle] = useInput();
   const [body, setBody, changeBody] = useInput();
@@ -89,7 +91,14 @@ function Modify() {
     <StyledWrap>
       <StyledBoardBlock>
         <StyledImageBlock>
-          {<DragBox image={image} setImage={setImage} />}
+          {
+            <DragBox
+              image={image}
+              setImage={setImage}
+              image_files={data?.imageUrl}
+              defaultImage={defaultImage}
+            />
+          }
         </StyledImageBlock>
         <StyledBodyForm onSubmit={handlerSubmit}>
           <FormInput

@@ -11,11 +11,6 @@ const StyledLabel = styled.label`
   height: 100%;
   margin: 0px auto;
   cursor: pointer;
-  background-color: #3a3a3a;
-
-  &:hover {
-    background-color: #616161;
-  }
 `;
 
 const StyledInner = styled.div`
@@ -25,8 +20,6 @@ const StyledInner = styled.div`
   border-radius: 8px;
   font-size: 16px;
   line-height: 128px;
-  background-color: #3a3a3a;
-  color: #bbb;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +36,11 @@ const StyledImage = styled.img`
   object-position: center;
   object-fit: cover;
   border-radius: 8px;
+
+  opacity: 1;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 export { StyledContainer, StyledLabel, StyledInner, StyledImage };

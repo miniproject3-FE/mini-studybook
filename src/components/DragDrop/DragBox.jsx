@@ -13,6 +13,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { StyledContainer, StyledLabel, StyledInner, StyledImage } from './styles';
+import DragImage from '../../assets/images/dragdrop.png';
 
 function DragBox(props) {
   const dragRef = useRef(null);
@@ -58,6 +59,10 @@ function DragBox(props) {
 
   useEffect(() => {
     //컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
+    if (props.defaultImage !== '') {
+      console.log('test');
+      props.setImage({ ...props.image, preview_URL: props.defaultImage });
+    }
     return () => {
       URL.revokeObjectURL(props.image.preview_URL);
     };
@@ -77,8 +82,10 @@ function DragBox(props) {
           <StyledInner id="inner">
             <StyledImage src={props.image.preview_URL} />
           </StyledInner>
+        ) : props.image.preview_URL ? (
+          <StyledImage src={props.image.preview_URL} />
         ) : (
-          <StyledInner id="inner">드래그하거나 클릭해서 업로드</StyledInner>
+          <StyledImage src={DragImage} />
         )}
       </StyledLabel>
       <input
