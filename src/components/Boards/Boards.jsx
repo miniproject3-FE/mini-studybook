@@ -14,13 +14,9 @@ function Boards() {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.board.getDatas.data);
 
-  console.log('boards', boards);
   useEffect(() => {
-    console.log('useEffect');
     dispatch(__getBoards());
   }, [dispatch]);
-
-  console.log('rendering');
 
   return (
     <BoardContainer>

@@ -60,7 +60,6 @@ function DragBox(props) {
   useEffect(() => {
     //컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
     if (props.defaultImage !== '') {
-      console.log('test');
       props.setImage({ ...props.image, preview_URL: props.defaultImage });
     }
     return () => {

@@ -42,7 +42,6 @@ function Login() {
   };
 
   const handlerClickSignup = (e) => {
-    console.log('test');
     navigate('/signup');
   };
 

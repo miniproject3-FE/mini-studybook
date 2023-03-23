@@ -79,10 +79,8 @@ function Signup() {
         email: emailInfo.value,
         username: username.value,
       };
-      console.log('newUser', newUser);
 
       dispatch(__signup(newUser)).then((response) => {
-        console.log(response);
         if (response.type === 'signup/fulfilled') {
           navigate('/login');
         }
