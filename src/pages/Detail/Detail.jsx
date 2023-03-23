@@ -19,8 +19,6 @@ import {
   __getBoard,
   __boardDelete,
 } from '../../redux/modules/boardSlice';
-import jwt_decode from 'jwt-decode';
-import { getCookie } from '../../auth/Cookie';
 
 function Detail() {
   const dispatch = useDispatch();
@@ -29,10 +27,6 @@ function Detail() {
   //도메인에서 현재페에지 id 값 가져오기
   const { id } = useParams();
   const { isLoading, isError, data } = useSelector((state) => state.board.data);
-
-  //토큰 decode
-  const token = getCookie(['token']);
-  const loginId = jwt_decode(token).sub;
 
   const handlerClickLike = () => {
     dispatch(__boardLike(id));
@@ -85,12 +79,12 @@ function Detail() {
             )}
             <DetailButtons>
               <StyledButton onClick={handlerClickMainNav}>완료</StyledButton>
-              {loginId === data?.loginid && (
+
                 <>
                   <StyledButton onClick={handlerClickModify}>수정</StyledButton>
                   <StyledButton onClick={handlerClickDelete}>삭제</StyledButton>
                 </>
-              )}
+
             </DetailButtons>
           </StyledLikeBlock>
         </StyledContentBox>

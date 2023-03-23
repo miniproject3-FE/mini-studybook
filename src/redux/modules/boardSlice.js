@@ -26,7 +26,6 @@ const initialState = {
       islike: false,
       loginid: '',
       totalCount: 0,
-      totalCount: 0,
     },
   ],
   error: null,
