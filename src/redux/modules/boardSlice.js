@@ -25,6 +25,7 @@ const initialState = {
       title: '',
       islike: false,
       loginid: '',
+      totalCount: 0,
     },
   ],
   error: null,
@@ -138,7 +139,7 @@ const boardSlice = createSlice({
     [__boardModify.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.board = action;
+      state.data = action;
     },
     [__boardModify.rejected]: (state, action) => {
       state.isLoading = false;
