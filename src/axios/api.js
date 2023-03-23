@@ -23,7 +23,6 @@ instance.interceptors.request.use(
     //특정 페이지는 쿠키를 주면 안되니 제외하고 적어주기
     if (config.url !== '/api/auth/signup' && config.url !== '/api/auth/login') {
       config.headers.Authorization = getCookie('token');
-      console.log('config', config);
     }
 
     return config;

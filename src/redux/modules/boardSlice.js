@@ -25,6 +25,7 @@ const initialState = {
       title: '',
       islike: false,
       loginid: '',
+      totalCount: 0,
     },
   ],
   error: null,
@@ -77,7 +78,7 @@ export const __boardModify = createAsyncThunk(
         title: payload.title,
         content: payload.content,
       };
-      const response = await api.post(`./api/post/${payload.id}`, newPayload);
+      const response = await api.put(`./api/post/${payload.id}`, newPayload);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -137,7 +138,6 @@ const boardSlice = createSlice({
     [__boardModify.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.board = action;
     },
     [__boardModify.rejected]: (state, action) => {
       state.isLoading = false;
@@ -167,6 +167,7 @@ const boardSlice = createSlice({
     [__getBoards.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.getDatas = action.payload;
+      console.log('action.payload', action.payload);
     },
     [__getBoards.rejected]: (state, action) => {
       state.isLoading = false;

@@ -15,13 +15,17 @@ function Boards() {
   const boards = useSelector((state) => state.board.getDatas.data);
 
   useEffect(() => {
-    console.log('navi시에 뜨는가?')
+    console.log('useEffect');
     dispatch(__getBoards());
   }, [dispatch]);
-  
+
+  console.log('rendering');
+
   return (
     <BoardContainer>
-      { boards?.map((board) => <Card key={board.id} board={board} /> ) }
+      {boards?.map((board) => (
+        <Card key={board.id} board={board} />
+      ))}
     </BoardContainer>
   );
 }
