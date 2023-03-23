@@ -34,11 +34,17 @@ const initialState = {
   error: null,
 };
 
+
 export const __login = createAsyncThunk('Login', async (payload, thunkAPI) => {
   try {
     const response = await api.post('/api/auth/login', payload);
     setCookie('token', response.headers.authorization);
     return thunkAPI.fulfillWithValue(response.data);
+
+
+export const __logout = createAsyncThunk('logout', async (payload, thunkAPI) => {
+  try {
+    const response = await api.get('/api/auth/logout');
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response);
   }
