@@ -19,7 +19,6 @@ const StyledBoardBlock = styled.div`
   height: 70vh;
   border: 1px solid lightgray;
   display: flex;
-  z-index: 100;
   border-radius: 10px;
 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,

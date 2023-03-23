@@ -26,8 +26,6 @@ function Header() {
 
   const cookie = getCookie('token');
 
-  
-
   if (logout === true) {
     setLogout(false);
     navigate('/');
@@ -36,18 +34,15 @@ function Header() {
   return (
     <StyledHeader>
       <StyledUl>
-        <StyledLi onClick={() => { navigate('/board')}}> | Write </StyledLi>
+        <StyledLi onClick={() => { navigate('/board')}} > | Write </StyledLi>
 
-        {
-        cookie !== undefined 
-        ? (<StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>) 
-        : (<StyledLi onClick={() => { navigate('/login');}}> | Login </StyledLi>)
-        }
-        {
-        cookie !== undefined 
-        ? ( <StyledLi onClick={() => { navigate('/withdrawal'); }}> | Withdrawal </StyledLi>) 
-        : (<StyledLi onClick={() => { navigate('/signup'); }}> | Signup </StyledLi>)
-        }
+        {cookie !== undefined
+          ? (<StyledLi onClick={handlerClickLogout}> | Logout </StyledLi>)
+          : (<StyledLi onClick={() => { navigate('/login') }} > | Login </StyledLi>)}
+
+        {cookie !== undefined
+          ? (<StyledLi onClick={() => { navigate('/withdrawal'); }} > | Withdrawal </StyledLi>)
+          : (<StyledLi onClick={() => { navigate('/signup') }} > | Signup </StyledLi>)}
       </StyledUl>
     </StyledHeader>
   );

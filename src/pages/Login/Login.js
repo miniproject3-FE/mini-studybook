@@ -2,7 +2,7 @@
  * 작성자: 김은영
  * 목적: 로그인 기능구현
  * 작성 날짜: 2023-03-18
- * 
+ *
  * 수정자: 김은영
  * 목적: 로고 클릭시 홈 화면으로 이동 및 호버시 커서모양 변경
  * 수정 날찌: 2023-03-23
@@ -17,6 +17,7 @@ import LogoBox from '../../components/LogoBox';
 import Button from '../../components/Button';
 import FormInput from '../../components/FormLabelInput/FormLabelInput';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 function Login() {
   const [loginid, idOnChangeHandler, idChangeHandler] = useInput();
@@ -30,21 +31,29 @@ function Login() {
     password,
   };
 
-
   const loginOnsubmitHandler = (user) => {
     dispatch(__login(user)).then((response) => {
       if (response.type === 'Login/fulfilled') {
         navigate('/');
-      } 
+      }
     });
     idChangeHandler('');
     passwordChangeHandler('');
   };
 
+  const handlerClickSignup = (e) => {
+    console.log('test');
+    navigate('/signup');
+  };
+
   return (
     <StyledFormContainer>
       <StyledHeader>
-        <LogoBox onClick={()=> {navigate('/')}} />
+        <LogoBox
+          onClick={() => {
+            navigate('/');
+          }}
+        />
       </StyledHeader>
       <StyledBody>
         <StyledForm
@@ -73,11 +82,28 @@ function Login() {
             value={password}
             onChange={passwordOnChangeHandler}
           />
+
           <Button size="large" value="로그인" background="#14213D" />
         </StyledForm>
+        <StyledBtnBox>
+          <Button
+            size="large"
+            value="회원가입"
+            background="#14213D"
+            onClick={() => {
+              navigate('/signup');
+            }}
+          />
+        </StyledBtnBox>
       </StyledBody>
     </StyledFormContainer>
   );
 }
 
 export default Login;
+
+const StyledBtnBox = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+`;
