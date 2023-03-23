@@ -29,7 +29,8 @@
 
 ## WildFrame
 
-![wildframe](https://user-images.githubusercontent.com/124577334/227242151-710274c4-8842-48b5-b970-5dc88d9d0183.png)
+<img width="943" alt="image" src="https://user-images.githubusercontent.com/124577334/227242915-ef7b5944-e0eb-4f19-90ae-e1e2a62da669.png">
+
 ![wildframe2](https://user-images.githubusercontent.com/124577334/227242160-2b9545a7-8cf6-4c4b-8b20-d08063af4bc2.png)
 
 ---
