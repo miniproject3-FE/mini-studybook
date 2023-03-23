@@ -66,7 +66,7 @@ function Login() {
             required
             label={'ID'}
             id={'id'}
-            size={'large'}
+            size={'login'}
             type={'text'}
             placeholder={'아이디를 입력해주세요.'}
             value={loginid}
@@ -76,7 +76,7 @@ function Login() {
             required
             label={'PASSWORD'}
             id={'password'}
-            size={'large'}
+            size={'login'}
             type={'password'}
             placeholder={'비밀번호를 입력해주세요.'}
             value={password}
