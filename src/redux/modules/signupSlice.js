@@ -41,12 +41,12 @@ export const __signup = createAsyncThunk('signup', async (payload, thunkAPI) => 
   }
 });
 
-export const __withdrawal = createAsyncThunk('WITHDRAWAL', async (payload, thunkAPI) => {
+export const __signout = createAsyncThunk('WITHDRAWAL', async (payload, thunkAPI) => {
   try {
     const { data } = await api.delete('/api/auth/deleteid', payload);
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data)
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
@@ -68,7 +68,7 @@ export const signupSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
       state.error = action.payload;
-      alert(action.payload.msg)
+      alert(action.payload.msg);
     },
 
     // 조회
@@ -86,19 +86,19 @@ export const signupSlice = createSlice({
     },
 
     // 회원탈퇴
-    [__withdrawal.pending]: (state, action) => {
+    [__signout.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [__withdrawal.fulfilled]: (state, action) => {
+    [__signout.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
       // alert(action.payload)
     },
-    [__withdrawal.rejected]: (state, action) => {
+    [__signout.rejected]: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
       state.isError = true;
-    }
+    },
   },
 });
 

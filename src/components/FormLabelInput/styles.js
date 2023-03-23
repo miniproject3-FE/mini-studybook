@@ -20,7 +20,7 @@ const StyledLabel = styled.label`
 `;
 
 const sizes = {
-  large: { width: '31rem', height: 'rem', fontSize: '1.2rem' },
+  large: { width: '28.5rem', height: 'rem', fontSize: '1.2rem' },
   medium: { width: '17rem', height: '2rem', fontSize: '1.25rem' },
   small: { width: '12rem', height: '1.5rem', fontSize: '1rem' },
   board: {
@@ -30,6 +30,8 @@ const sizes = {
     boxShadow: `rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
   rgb(209, 213, 219) 0px 0px 0px 1px inset`,
   },
+
+  login: { width: '31rem', height: 'rem', fontSize: '1.2rem' },
 };
 
 const StyledInput = styled.input`
